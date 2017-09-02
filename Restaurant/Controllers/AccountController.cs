@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Restaurant.Models;
 
 namespace Restaurant.Controllers
 {
-    public class LoginController : Controller
+    public class AccountController : Controller
     {
-        // GET: /
+        // GET: /Account/Login
         public ActionResult Login()
         {
             return View();
@@ -27,7 +28,7 @@ namespace Restaurant.Controllers
                     if (user != null)
                     {
                         Session["serverName"] = user.FullName;
-                        Session["serverId"] = user.Id;
+                        FormsAuthentication.SetAuthCookie(u.ServerNumber.ToString(), false);
                         return RedirectToAction("Index", "Home");
                     }
                 }
@@ -35,6 +36,12 @@ namespace Restaurant.Controllers
             ModelState.Clear();
             ViewBag.message = "Server Number or Password Incorrect";
             return View();
+        }
+
+        public ActionResult LogOff()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login");
         }
     }
 }
