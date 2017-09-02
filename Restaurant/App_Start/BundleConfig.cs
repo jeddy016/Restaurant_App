@@ -24,7 +24,7 @@ namespace Restaurant
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap-darkly.css",
+                      "~/Content/bootstrap-simplex.css",
                       "~/Content/Site.css"));
         }
     }

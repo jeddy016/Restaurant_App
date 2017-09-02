@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Restaurant.Interfaces;
 
 namespace Restaurant.Models
 {
-    public class Side
+    public class Side : IMenuItem
     {
         public int Id { get; set; }
         public string Name { get; set; }

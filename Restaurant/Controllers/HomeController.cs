@@ -13,9 +13,23 @@ namespace Restaurant.Controllers
     {
         public ActionResult Index()
         {
-            var viewModel = new MenuViewModel().GetMenuItems();
+            var viewModel = GetMenuItems();
             
             return View(viewModel);
+        }
+
+        public MenuViewModel GetMenuItems()
+        {
+            var menu = new MenuViewModel();
+            using (AppDbContext _context = new AppDbContext())
+            {
+                menu.Appetizers = _context.Appetizers.ToList();
+                menu.Entrees = _context.Entrees.ToList();
+                menu.Sides = _context.Sides.ToList();
+                menu.Desserts = _context.Desserts.ToList();
+                menu.Drinks = _context.Drinks.ToList();
+            }
+            return menu;
         }
     }
 }

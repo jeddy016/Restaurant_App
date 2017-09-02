@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Restaurant.Interfaces;
 using Restaurant.Models;
 
 namespace Restaurant.ViewModels
@@ -13,19 +15,5 @@ namespace Restaurant.ViewModels
         public List<Side> Sides { get; set; }
         public List<Dessert> Desserts { get; set; }
         public List<Drink> Drinks { get; set; }
-
-        public MenuViewModel GetMenuItems()
-        {
-            var menu = new MenuViewModel();
-            using (AppDbContext _context = new AppDbContext())
-            {
-                menu.Appetizers = _context.Appetizers.ToList();
-                menu.Entrees = _context.Entrees.ToList();
-                menu.Sides = _context.Sides.ToList();
-                menu.Desserts = _context.Desserts.ToList();
-                menu.Drinks = _context.Drinks.ToList();
-            }
-            return menu;
-        }
     }
 }
