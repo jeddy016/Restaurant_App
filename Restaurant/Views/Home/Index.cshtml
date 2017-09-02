@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Place Order";
+}
+
+<h2>Place Order</h2>
+
+@if (Session["serverName"] != null)
+{
+    <p>Server: @Session["serverName"].ToString()</p>
+}
