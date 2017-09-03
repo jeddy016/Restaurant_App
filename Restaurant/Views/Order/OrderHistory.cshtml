@@ -1,8 +1,39 @@
-﻿
+﻿@model Restaurant.ViewModels.OrderHistoryViewModel
 @{
     ViewBag.Title = "Order History";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Order History</h2>
+<hr/>
+<div class="table-responsive">
+    <table class="table-hover table-striped" style="width: 100%">
+        <thead>
+            <tr style="color: #2A9FD6">
+                <th>Date/Time</th>
+                <th>Server</th>
+                <th>Sub-Total</th>
+                <th>Discount</th>
+                <th>Pre-Tax</th>
+                <th>Tax</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model.Orders)
+            {
+                <tr>
+                    <td>@($"{order.DateTime.ToString():g}")</td>
+                    <td>@order.Server.FullName</td>
+                    <td>$@order.SubTotal</td>
+                    <td>$@order.Discount</td>
+                    <td>$@order.PreTaxTotal</td>
+                    <td>$@order.Tax</td>
+                    <td>$@order.Total</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
 

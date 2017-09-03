@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using Restaurant.Models;
 using Restaurant.Services;
@@ -29,17 +30,33 @@ namespace Restaurant.Controllers
             {
                 Order order = OrderService.Build(orderedMenuItems, server, model.SelectedDiscount);
                 
-                return View("OrderDetail", order);
+                OrderDetailViewModel viewModel = new OrderDetailViewModel()
+                {
+                    Order = order,
+                    OrderedItems = orderedMenuItems
+                };
+                
+                return View("OrderDetail", viewModel);
             }
 
             TempData["message"] = "Orders must contain at least 1 item";
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult OrderHistory()
+        [HttpPost]
+        public ActionResult SaveOrder(Order order)
         {
-            return View();
+            OrderService.Save(order);
+            return RedirectToAction("OrderHistory");
         }
 
+        public ActionResult OrderHistory()
+        {
+            var viewModel = new OrderHistoryViewModel()
+            {
+                Orders = OrderService.GetOrderHistory()
+            };
+            return View(viewModel);
+        }
     }
 }

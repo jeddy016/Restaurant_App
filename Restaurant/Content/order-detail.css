@@ -1,0 +1,7 @@
+﻿.item-name, .item-total, .order-total {
+    color: #2A9FD6;
+}
+
+.order-total {
+    font-size: 1.5em;
+}

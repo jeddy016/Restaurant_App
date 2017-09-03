@@ -204,6 +204,10 @@
     <Compile Include="Migrations\201709031939018_removeSelectedFlagFromDiscount.Designer.cs">
       <DependentUpon>201709031939018_removeSelectedFlagFromDiscount.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709032054041_addServerIdToOrder.cs" />
+    <Compile Include="Migrations\201709032054041_addServerIdToOrder.Designer.cs">
+      <DependentUpon>201709032054041_addServerIdToOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppDbContext.cs" />
     <Compile Include="Models\Appetizer.cs" />
@@ -221,10 +225,13 @@
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
+    <Compile Include="ViewModels\OrderDetailViewModel.cs" />
+    <Compile Include="ViewModels\OrderHistoryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-cyborg.css" />
     <Content Include="Content\login.css" />
+    <Content Include="Content\order-detail.css" />
     <Content Include="Content\order-page.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -314,6 +321,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709031939018_removeSelectedFlagFromDiscount.resx">
       <DependentUpon>201709031939018_removeSelectedFlagFromDiscount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709032054041_addServerIdToOrder.resx">
+      <DependentUpon>201709032054041_addServerIdToOrder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

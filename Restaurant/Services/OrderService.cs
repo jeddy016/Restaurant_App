@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc.Html;
 using Restaurant.Interfaces;
 using Restaurant.Models;
 
@@ -19,6 +21,7 @@ namespace Restaurant.Services
             {
                 DateTime = DateTime.Now,
                 Server = server,
+                ServerId = server.Id,
                 SubTotal = subTotal,
                 Discount = discountAmount,
                 PreTaxTotal = preTaxAmount >= 0.00M ? preTaxAmount : 0.00M,
@@ -27,6 +30,23 @@ namespace Restaurant.Services
             };
 
             return order;
+        }
+
+        internal static void Save(Order order)
+        {
+            using (AppDbContext _context = new AppDbContext())
+            {
+                _context.Orders.Add(order);
+                _context.SaveChanges();
+            }
+        }
+
+        public static List<Order> GetOrderHistory()
+        {
+            using (AppDbContext _context = new AppDbContext())
+            {
+                return _context.Orders.Include("Server").ToList();
+            }
         }
     }
 }
