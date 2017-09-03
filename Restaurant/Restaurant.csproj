@@ -176,6 +176,14 @@
     <Compile Include="Migrations\201709021850106_createMenuItemModels.Designer.cs">
       <DependentUpon>201709021850106_createMenuItemModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709030059023_addOrdersModel.cs" />
+    <Compile Include="Migrations\201709030059023_addOrdersModel.Designer.cs">
+      <DependentUpon>201709030059023_addOrdersModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709030112286_addUserInfoConstraints.cs" />
+    <Compile Include="Migrations\201709030112286_addUserInfoConstraints.Designer.cs">
+      <DependentUpon>201709030112286_addUserInfoConstraints.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppDbContext.cs" />
     <Compile Include="Models\Appetizer.cs" />
@@ -259,6 +267,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709021850106_createMenuItemModels.resx">
       <DependentUpon>201709021850106_createMenuItemModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709030059023_addOrdersModel.resx">
+      <DependentUpon>201709030059023_addOrdersModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709030112286_addUserInfoConstraints.resx">
+      <DependentUpon>201709030112286_addUserInfoConstraints.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
