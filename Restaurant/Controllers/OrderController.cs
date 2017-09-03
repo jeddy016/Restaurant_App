@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Restaurant.Interfaces;
 using Restaurant.Models;
+using Restaurant.Services;
 using Restaurant.ViewModels;
 
 namespace Restaurant.Controllers
@@ -15,29 +12,40 @@ namespace Restaurant.Controllers
         [HttpPost]
         public ActionResult BuildOrder(MenuViewModel model)
         {
-            var subTotal = CalculateSubTotal(model);
-            var discountAmount = decimal.Round((CalculateDiscount(model) * subTotal), 2, MidpointRounding.AwayFromZero);
-            var preTaxAmount = decimal.Round((subTotal - discountAmount), 2, MidpointRounding.AwayFromZero);
             User server;
 
             try
             {
-                server = GetUserById(int.Parse(Session["serverId"].ToString()));
+                server = AccountController.GetUserById(Session["serverId"].ToString());
             }
-            catch (Exception){
+            catch (NullReferenceException)
+            {
                 return RedirectToAction("Login", "Account");
             }
 
-            Order order = new Order()
+            var orderedMenuItems = Menu.GetOrderedItems(model);
+
+            if (orderedMenuItems.Count > 0)
             {
-                DateTime = DateTime.Now,
-                Server = server,
-                SubTotal = subTotal,
-                Discount = discountAmount,
-                PreTaxTotal = preTaxAmount >= 0.00M ? preTaxAmount : 0.00M
-            };
-   
-            return View("OrderDetail", order);
+                var subTotal = CashRegister.CalculateSubTotal(orderedMenuItems);
+                var discountAmount = CashRegister.CalculateDiscount(model.SelectedDiscount, subTotal);
+                var preTaxAmount = CashRegister.FormatAsCurrency(subTotal - discountAmount);
+
+                Order order = new Order()
+                {
+                    DateTime = DateTime.Now,
+                    Server = server,
+                    SubTotal = subTotal,
+                    Discount = discountAmount,
+                    PreTaxTotal = preTaxAmount >= 0.00M ? preTaxAmount : 0.00M
+                };
+
+                return View("OrderDetail", order);
+            }
+
+            TempData["message"] = "Orders must contain at least 1 item";
+
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult OrderHistory()
@@ -45,52 +53,5 @@ namespace Restaurant.Controllers
             return View();
         }
 
-        public decimal CalculateSubTotal(MenuViewModel model)
-        {
-            var menuList = Flatten(model);
-            var subTotal = 0.00M;
-
-            foreach (var menuItem in menuList)
-            {
-                subTotal += menuItem.Price * menuItem.Quantity;
-            }
-
-            return subTotal;
-        }
-
-        private decimal CalculateDiscount(MenuViewModel model)
-        {
-            var discountAmount = 0.00M;
-
-            foreach (var discount in model.Discounts)
-            {
-                if (discount.Selected)
-                {
-                    discountAmount += discount.Percentage;
-                }
-            }
-            return discountAmount / 100;
-        }
-
-        public List<IMenuItem> Flatten(MenuViewModel model)
-        {
-            var listOfLists = new List<List<IMenuItem>>()
-            {
-                model.Appetizers.ToList<IMenuItem>(),
-                model.Desserts.ToList<IMenuItem>(),
-                model.Drinks.ToList<IMenuItem>(),
-                model.Entrees.ToList<IMenuItem>(),
-                model.Sides.ToList<IMenuItem>()
-            };
-            return listOfLists.SelectMany(x => x).ToList();
-        }
-
-        public User GetUserById(int userId)
-        {
-            using (AppDbContext _context = new AppDbContext())
-            {
-                return _context.Users.SingleOrDefault(u => u.Id == userId);
-            }
-        }
     }
 }

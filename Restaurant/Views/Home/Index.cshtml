@@ -11,6 +11,13 @@
     {
         <h6>Server: @Session["serverName"].ToString()</h6>
     }
+
+    @if (TempData["message"] != null)
+    {
+        <div>
+            <span class="field-validation-error">@TempData["message"].ToString()</span>
+        </div>
+    }
 </div>
 
 @using (Html.BeginForm("BuildOrder", "Order", FormMethod.Post))
@@ -26,7 +33,7 @@
                 <p>$@Model.Appetizers[i].Price</p>
                 @Html.HiddenFor(m => m.Appetizers[i].Price)
                 @Html.LabelFor(m => m.Appetizers[i].Quantity)
-                @Html.TextBoxFor(m => m.Appetizers[i].Quantity, new { @type = "number", min="0", @class = "form-control" })
+                @Html.TextBoxFor(m => m.Appetizers[i].Quantity, new { type = "number", min="0", @class = "quantity-input" })
             </div>
         }
     </div>
@@ -44,7 +51,7 @@
                 <p>$@Model.Entrees[i].Price</p>
                 @Html.HiddenFor(m => m.Entrees[i].Price)
                 @Html.LabelFor(m => m.Entrees[i].Quantity)
-                @Html.TextBoxFor(m => m.Entrees[i].Quantity, new { @type = "number", min = "0", @class = "form-control" })
+                @Html.TextBoxFor(m => m.Entrees[i].Quantity, new { type = "number", min = "0", @class = "quantity-input" })
             </div>
         }         
     </div>
@@ -61,7 +68,7 @@
                 <p>$@Model.Sides[i].Price</p>
                 @Html.HiddenFor(m => m.Sides[i].Price)
                 @Html.LabelFor(m => m.Sides[i].Quantity)
-                @Html.TextBoxFor(m => m.Sides[i].Quantity, new { @type = "number", min = "0", @class = "form-control" })
+                @Html.TextBoxFor(m => m.Sides[i].Quantity, new { type = "number", min = "0", @class = "quantity-input" })
             </div>
         }
     </div>
@@ -78,7 +85,7 @@
                 <p>$@Model.Desserts[i].Price</p>
                 @Html.HiddenFor(m => m.Desserts[i].Price)
                 @Html.LabelFor(m => m.Desserts[i].Quantity)
-                @Html.TextBoxFor(m => m.Desserts[i].Quantity, new { @type = "number", min = "0", @class = "form-control" })
+                @Html.TextBoxFor(m => m.Desserts[i].Quantity, new { type = "number", min = "0", @class = "quantity-input" })
             </div>
         }
     </div>
@@ -95,28 +102,17 @@
                 <p>$@Model.Drinks[i].Price</p>
                 @Html.HiddenFor(m => m.Drinks[i].Price)
                 @Html.LabelFor(m => m.Drinks[i].Quantity)
-                @Html.TextBoxFor(m => m.Drinks[i].Quantity, new { @type = "number", min = "0", @class = "form-control" })
+                @Html.TextBoxFor(m => m.Drinks[i].Quantity, new { type = "number", min = "0", @class = "quantity-input" })
             </div>
         }
     </div>
     <hr/>
 
-    <div class="row text-center">
-        <h3>Discounts</h3>
-    </div>
-
     <div class="row">
-        @for(var i = 0; i < Model.Discounts.Count; i++)
-        {
-            @Html.HiddenFor(m=>m.Discounts[i].Percentage)
-            <div class="col-md-3 text-center">
-                <div class="checkbox">
-                    <label class="discount-label">
-                        @Html.CheckBoxFor(m => m.Discounts[i].Selected) @Model.Discounts[i].Name @Model.Discounts[i].Percentage%
-                    </label> 
-                </div>
-            </div>
-        }
+        <div class="col-md-12 text-center">
+            @Html.LabelFor(m => m.SelectedDiscount, new {@class = "discount-label"})
+            @Html.DropDownListFor(m => m.SelectedDiscount, new SelectList(Model.Discounts, "Percentage", "Name"), "None", new {@class = "form-control"})
+        </div>
     </div>
 
     <div class="row">

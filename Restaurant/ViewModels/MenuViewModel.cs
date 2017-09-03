@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using Restaurant.Interfaces;
@@ -16,5 +17,7 @@ namespace Restaurant.ViewModels
         public List<Dessert> Desserts { get; set; }
         public List<Drink> Drinks { get; set; }
         public List<Discount> Discounts { get; set; }
+        [Display(Name = "Apply Discount")]
+        public int SelectedDiscount { get; set; }
     }
 }
