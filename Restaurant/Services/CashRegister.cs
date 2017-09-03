@@ -28,6 +28,13 @@ namespace Restaurant.Services
             return FormatAsCurrency((discount / 100M) * subTotal);
         }
 
+        public static decimal CalculateTax(decimal preTaxAmount)
+        {
+            decimal taxRate = GetTaxes().Sum(t => t.Percentage) / 100M;
+
+            return FormatAsCurrency(preTaxAmount * taxRate);
+        }
+
         public static decimal FormatAsCurrency(decimal input)
         {
             return Decimal.Round(input, 2, MidpointRounding.AwayFromZero);
@@ -40,5 +47,14 @@ namespace Restaurant.Services
                 return _context.Discounts.ToList();
             }
         }
+
+        public static List<Tax> GetTaxes()
+        {
+            using (AppDbContext _context = new AppDbContext())
+            {
+                return _context.Taxes.ToList();
+            }
+        }
+
     }
 }

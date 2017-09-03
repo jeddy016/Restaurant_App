@@ -16,35 +16,23 @@ namespace Restaurant.Controllers
 
             try
             {
-                server = AccountController.GetUserById(Session["serverId"].ToString());
+                server = UserService.GetUserById(Session["serverId"].ToString());
             }
             catch (NullReferenceException)
             {
                 return RedirectToAction("Login", "Account");
             }
 
-            var orderedMenuItems = Menu.GetOrderedItems(model);
+            var orderedMenuItems = MenuService.GetOrderedItems(model);
 
             if (orderedMenuItems.Count > 0)
             {
-                var subTotal = CashRegister.CalculateSubTotal(orderedMenuItems);
-                var discountAmount = CashRegister.CalculateDiscount(model.SelectedDiscount, subTotal);
-                var preTaxAmount = CashRegister.FormatAsCurrency(subTotal - discountAmount);
-
-                Order order = new Order()
-                {
-                    DateTime = DateTime.Now,
-                    Server = server,
-                    SubTotal = subTotal,
-                    Discount = discountAmount,
-                    PreTaxTotal = preTaxAmount >= 0.00M ? preTaxAmount : 0.00M
-                };
-
+                Order order = OrderService.Build(orderedMenuItems, server, model.SelectedDiscount);
+                
                 return View("OrderDetail", order);
             }
 
             TempData["message"] = "Orders must contain at least 1 item";
-
             return RedirectToAction("Index", "Home");
         }
 

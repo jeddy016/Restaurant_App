@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
+﻿using System.Data.Entity;
 
 namespace Restaurant.Models
 {
@@ -16,5 +12,6 @@ namespace Restaurant.Models
         public DbSet<Side> Sides { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Discount> Discounts { get; set; }
+        public DbSet<Tax> Taxes { get; set; }
     }
 }

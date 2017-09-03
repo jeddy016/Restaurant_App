@@ -10,7 +10,6 @@ namespace Restaurant.Controllers
 {
     public class AccountController : Controller
     {
-        // GET: /Account/Login
         public ActionResult Login()
         {
             return View();
@@ -45,14 +44,5 @@ namespace Restaurant.Controllers
             return RedirectToAction("Login");
         }
 
-        public static User GetUserById(string userId)
-        {
-            var Id = int.Parse(userId);
-
-            using (AppDbContext _context = new AppDbContext())
-            {
-                return _context.Users.SingleOrDefault(u => u.Id == Id);
-            }
-        }
     }
 }

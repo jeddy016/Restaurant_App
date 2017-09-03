@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using Restaurant.Interfaces;
 using Restaurant.Models;
 using Restaurant.ViewModels;
 
 namespace Restaurant.Services
 {
-    public class Menu
+    public class MenuService
     {
         public static MenuViewModel GetMenuItems()
         {

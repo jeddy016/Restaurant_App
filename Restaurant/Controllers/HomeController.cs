@@ -15,7 +15,7 @@ namespace Restaurant.Controllers
     {
         public ActionResult Index()
         {
-            var viewModel = Menu.GetMenuItems();
+            var viewModel = MenuService.GetMenuItems();
             viewModel.Discounts = CashRegister.GetDiscounts();
             
             return View(viewModel);
