@@ -1,0 +1,30 @@
+﻿h3 {
+    color: #2A9FD6
+}
+
+h4 {
+    cursor: pointer;
+}
+
+h4:hover {
+    text-decoration: underline;
+}
+
+.col-md-2 {
+    display: none;
+}
+
+.form-control {
+    display: inline-block;
+    width: 25%;
+    padding: 2%;
+    text-align: center;
+}
+
+.item-name {
+    color: #2A9FD6;
+}
+
+.review-btn {
+    margin-top: 5vh;
+}

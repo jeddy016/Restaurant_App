@@ -13,6 +13,7 @@ namespace Restaurant.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Server Number Required")]
+        [Display(Name = "Server Number")]
         public int ServerNumber { get; set; }
 
         public string FullName { get; set; }

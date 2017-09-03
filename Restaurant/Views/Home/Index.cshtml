@@ -3,12 +3,13 @@
     ViewBag.Title = "Place Order";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@Styles.Render("~/Content/order-page.css")
 
 <div class="row text-center">
-    <h2>Place Order</h2>
+    <h3>New Order</h3>
     @if (Session["serverName"] != null)
     {
-        <span>Server: @Session["serverName"].ToString()</span>
+        <h6>Server: @Session["serverName"].ToString()</h6>
     }
 </div>
 
@@ -16,16 +17,16 @@
 {
     <div class="row">
         <div class="col-md-12">
-            <h3>Appetizers</h3>
+            <h4 class="app-label">Appetizers</h4>
         </div>
         @for (var i = 0; i < Model.Appetizers.Count; i++)
         {
-            <div class="col-md-2 text-center">
-                <p>@Model.Appetizers[i].Name</p>
+            <div class="col-md-2 text-center app-item">
+                <p class="item-name">@Model.Appetizers[i].Name</p>
                 <p>$@Model.Appetizers[i].Price</p>
                 @Html.HiddenFor(m => m.Appetizers[i].Price)
                 @Html.LabelFor(m => m.Appetizers[i].Quantity)
-                @Html.TextBoxFor(m => m.Appetizers[i].Quantity, new { @type = "number", @class = "form-control" })
+                @Html.TextBoxFor(m => m.Appetizers[i].Quantity, new { @type = "number", min="0", @class = "form-control" })
             </div>
         }
     </div>
@@ -33,17 +34,17 @@
     <div class="row">
         <div class="col-md-12">
             <hr />
-            <h3>Entrees</h3>
+            <h4 class="entree-label">Entrees</h4>
         </div>
             
         @for (var i = 0; i < Model.Entrees.Count; i++)
         {
-            <div class="col-md-2 text-center">
-                <p>@Model.Entrees[i].Name</p>
+            <div class="col-md-2 text-center entree-item">
+                <p class="item-name">@Model.Entrees[i].Name</p>
                 <p>$@Model.Entrees[i].Price</p>
                 @Html.HiddenFor(m => m.Entrees[i].Price)
                 @Html.LabelFor(m => m.Entrees[i].Quantity)
-                @Html.TextBoxFor(m => m.Entrees[i].Quantity, new { @type = "number", @class = "form-control" })
+                @Html.TextBoxFor(m => m.Entrees[i].Quantity, new { @type = "number", min = "0", @class = "form-control" })
             </div>
         }         
     </div>
@@ -51,16 +52,16 @@
     <div class="row">
         <div class="col-md-12">
             <hr />
-            <h3>Sides</h3>
+            <h4 class="side-label">Sides</h4>
         </div>
         @for (var i = 0; i < Model.Sides.Count; i++)
         {
-            <div class="col-md-2 text-center">
-                <p>@Model.Sides[i].Name</p>
+            <div class="col-md-2 text-center side-item">
+                <p class="item-name">@Model.Sides[i].Name</p>
                 <p>$@Model.Sides[i].Price</p>
                 @Html.HiddenFor(m => m.Sides[i].Price)
                 @Html.LabelFor(m => m.Sides[i].Quantity)
-                @Html.TextBoxFor(m => m.Sides[i].Quantity, new { @type = "number", @class = "form-control" })
+                @Html.TextBoxFor(m => m.Sides[i].Quantity, new { @type = "number", min = "0", @class = "form-control" })
             </div>
         }
     </div>
@@ -68,16 +69,16 @@
     <div class="row">
         <div class="col-md-12">
             <hr />
-            <h3>Desserts</h3>
+            <h4 class="dessert-label">Desserts</h4>
         </div>
         @for (var i = 0; i < Model.Desserts.Count; i++)
         {
-            <div class="col-md-2 text-center">
-                <p>@Model.Desserts[i].Name</p>
+            <div class="col-md-2 text-center dessert-item">
+                <p class="item-name">@Model.Desserts[i].Name</p>
                 <p>$@Model.Desserts[i].Price</p>
                 @Html.HiddenFor(m => m.Desserts[i].Price)
                 @Html.LabelFor(m => m.Desserts[i].Quantity)
-                @Html.TextBoxFor(m => m.Desserts[i].Quantity, new { @type = "number", @class = "form-control" })
+                @Html.TextBoxFor(m => m.Desserts[i].Quantity, new { @type = "number", min = "0", @class = "form-control" })
             </div>
         }
     </div>
@@ -85,16 +86,16 @@
     <div class="row">
         <div class="col-md-12">
             <hr />
-            <h3>Drinks</h3>
+            <h4 class="drink-label">Drinks</h4>
         </div>
         @for (var i = 0; i < Model.Drinks.Count; i++)
         {
-            <div class="col-md-2 text-center">
-                <p>@Model.Drinks[i].Name</p>
+            <div class="col-md-2 text-center drink-item">
+                <p class="item-name">@Model.Drinks[i].Name</p>
                 <p>$@Model.Drinks[i].Price</p>
                 @Html.HiddenFor(m => m.Drinks[i].Price)
                 @Html.LabelFor(m => m.Drinks[i].Quantity)
-                @Html.TextBoxFor(m => m.Drinks[i].Quantity, new { @type = "number", @class = "form-control" })
+                @Html.TextBoxFor(m => m.Drinks[i].Quantity, new { @type = "number", min = "0", @class = "form-control" })
             </div>
         }
     </div>
