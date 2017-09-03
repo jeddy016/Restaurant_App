@@ -13,11 +13,11 @@
     }
 </div>
 
-@using (Html.BeginForm("PlaceOrder", "Order", FormMethod.Post))
+@using (Html.BeginForm("BuildOrder", "Order", FormMethod.Post))
 {
     <div class="row">
         <div class="col-md-12">
-            <h4 class="app-label">Appetizers</h4>
+            <h5 class="app-label">Appetizers</h5>
         </div>
         @for (var i = 0; i < Model.Appetizers.Count; i++)
         {
@@ -34,7 +34,7 @@
     <div class="row">
         <div class="col-md-12">
             <hr />
-            <h4 class="entree-label">Entrees</h4>
+            <h5 class="entree-label">Entrees</h5>
         </div>
             
         @for (var i = 0; i < Model.Entrees.Count; i++)
@@ -52,7 +52,7 @@
     <div class="row">
         <div class="col-md-12">
             <hr />
-            <h4 class="side-label">Sides</h4>
+            <h5 class="side-label">Sides</h5>
         </div>
         @for (var i = 0; i < Model.Sides.Count; i++)
         {
@@ -69,7 +69,7 @@
     <div class="row">
         <div class="col-md-12">
             <hr />
-            <h4 class="dessert-label">Desserts</h4>
+            <h5 class="dessert-label">Desserts</h5>
         </div>
         @for (var i = 0; i < Model.Desserts.Count; i++)
         {
@@ -86,7 +86,7 @@
     <div class="row">
         <div class="col-md-12">
             <hr />
-            <h4 class="drink-label">Drinks</h4>
+            <h5 class="drink-label">Drinks</h5>
         </div>
         @for (var i = 0; i < Model.Drinks.Count; i++)
         {
@@ -96,6 +96,25 @@
                 @Html.HiddenFor(m => m.Drinks[i].Price)
                 @Html.LabelFor(m => m.Drinks[i].Quantity)
                 @Html.TextBoxFor(m => m.Drinks[i].Quantity, new { @type = "number", min = "0", @class = "form-control" })
+            </div>
+        }
+    </div>
+    <hr/>
+
+    <div class="row text-center">
+        <h3>Discounts</h3>
+    </div>
+
+    <div class="row">
+        @for(var i = 0; i < Model.Discounts.Count; i++)
+        {
+            @Html.HiddenFor(m=>m.Discounts[i].Percentage)
+            <div class="col-md-3 text-center">
+                <div class="checkbox">
+                    <label class="discount-label">
+                        @Html.CheckBoxFor(m => m.Discounts[i].Selected) @Model.Discounts[i].Name @Model.Discounts[i].Percentage%
+                    </label> 
+                </div>
             </div>
         }
     </div>

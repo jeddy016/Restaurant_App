@@ -15,5 +15,6 @@ namespace Restaurant.ViewModels
         public List<Side> Sides { get; set; }
         public List<Dessert> Desserts { get; set; }
         public List<Drink> Drinks { get; set; }
+        public List<Discount> Discounts { get; set; }
     }
 }

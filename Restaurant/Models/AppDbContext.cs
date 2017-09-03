@@ -15,5 +15,6 @@ namespace Restaurant.Models
         public DbSet<Entree> Entrees { get; set; }
         public DbSet<Side> Sides { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Discount> Discounts { get; set; }
     }
 }

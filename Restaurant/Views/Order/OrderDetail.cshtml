@@ -1,10 +1,24 @@
-﻿@model Restaurant.Models.Order
+﻿@using Microsoft.Ajax.Utilities
+@model Restaurant.Models.Order
 @{
-    ViewBag.Title = "OrderDetail";
+    ViewBag.Title = "Order Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>OrderDetail</h2>
+<div class="row text-center">
+    <h2>Order Detail</h2>
+    <hr/>
+</div>
 
-<p>$@Model.SubTotal</p>
+<div class="row text-left">
+    <p>@($"{Model.DateTime.ToString():g}")</p>
+    <p>Server: @Model.Server.FullName</p>
+</div>
+
+<div class="row text-right">
+<p>SubTotal: $@Model.SubTotal</p>
+    <p>Discount: $@Model.Discount</p>
+    <p>Pre-Tax Total: $@Model.PreTaxTotal</p>
+</div>
+        
 

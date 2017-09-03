@@ -2,11 +2,11 @@
     color: #2A9FD6
 }
 
-h4 {
+h5 {
     cursor: pointer;
 }
 
-h4:hover {
+h5:hover {
     text-decoration: underline;
 }
 
@@ -25,6 +25,12 @@ h4:hover {
     color: #2A9FD6;
 }
 
+.discount-label {
+    font-size: 1.2em;
+    color: white;
+}
+
 .review-btn {
     margin-top: 5vh;
+    font-size: 1.5em;
 }

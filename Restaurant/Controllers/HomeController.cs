@@ -14,6 +14,7 @@ namespace Restaurant.Controllers
         public ActionResult Index()
         {
             var viewModel = GetMenuItems();
+            viewModel.Discounts = GetDiscounts();
             
             return View(viewModel);
         }
@@ -30,6 +31,14 @@ namespace Restaurant.Controllers
                 menu.Drinks = _context.Drinks.ToList();
             }
             return menu;
+        }
+
+        private List<Discount> GetDiscounts()
+        {
+            using (AppDbContext _context = new AppDbContext())
+            {
+                return _context.Discounts.ToList();
+            }
         }
     }
 }

@@ -9,22 +9,35 @@ using Restaurant.ViewModels;
 
 namespace Restaurant.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
         [HttpPost]
-        public ActionResult PlaceOrder(MenuViewModel model)
+        public ActionResult BuildOrder(MenuViewModel model)
         {
-            Order order = new Order();
-        
-            order.SubTotal = CalculateSubTotal(model);
-             
-            return RedirectToAction("OrderDetail", order);
-        }
+            var subTotal = CalculateSubTotal(model);
+            var discountAmount = decimal.Round((CalculateDiscount(model) * subTotal), 2, MidpointRounding.AwayFromZero);
+            var preTaxAmount = decimal.Round((subTotal - discountAmount), 2, MidpointRounding.AwayFromZero);
+            User server;
 
-        public ActionResult OrderDetail(Order order)
-        {
+            try
+            {
+                server = GetUserById(int.Parse(Session["serverId"].ToString()));
+            }
+            catch (Exception){
+                return RedirectToAction("Login", "Account");
+            }
 
-            return View(order);
+            Order order = new Order()
+            {
+                DateTime = DateTime.Now,
+                Server = server,
+                SubTotal = subTotal,
+                Discount = discountAmount,
+                PreTaxTotal = preTaxAmount >= 0.00M ? preTaxAmount : 0.00M
+            };
+   
+            return View("OrderDetail", order);
         }
 
         public ActionResult OrderHistory()
@@ -45,6 +58,20 @@ namespace Restaurant.Controllers
             return subTotal;
         }
 
+        private decimal CalculateDiscount(MenuViewModel model)
+        {
+            var discountAmount = 0.00M;
+
+            foreach (var discount in model.Discounts)
+            {
+                if (discount.Selected)
+                {
+                    discountAmount += discount.Percentage;
+                }
+            }
+            return discountAmount / 100;
+        }
+
         public List<IMenuItem> Flatten(MenuViewModel model)
         {
             var listOfLists = new List<List<IMenuItem>>()
@@ -56,6 +83,14 @@ namespace Restaurant.Controllers
                 model.Sides.ToList<IMenuItem>()
             };
             return listOfLists.SelectMany(x => x).ToList();
+        }
+
+        public User GetUserById(int userId)
+        {
+            using (AppDbContext _context = new AppDbContext())
+            {
+                return _context.Users.SingleOrDefault(u => u.Id == userId);
+            }
         }
     }
 }

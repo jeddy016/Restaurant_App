@@ -184,10 +184,23 @@
     <Compile Include="Migrations\201709030112286_addUserInfoConstraints.Designer.cs">
       <DependentUpon>201709030112286_addUserInfoConstraints.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709030217392_addDiscountModel.cs" />
+    <Compile Include="Migrations\201709030217392_addDiscountModel.Designer.cs">
+      <DependentUpon>201709030217392_addDiscountModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709030228527_addFlagToDiscountModel.cs" />
+    <Compile Include="Migrations\201709030228527_addFlagToDiscountModel.Designer.cs">
+      <DependentUpon>201709030228527_addFlagToDiscountModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709030331045_changeOrderModelDiscountToDecimal.cs" />
+    <Compile Include="Migrations\201709030331045_changeOrderModelDiscountToDecimal.Designer.cs">
+      <DependentUpon>201709030331045_changeOrderModelDiscountToDecimal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppDbContext.cs" />
     <Compile Include="Models\Appetizer.cs" />
     <Compile Include="Models\Dessert.cs" />
+    <Compile Include="Models\Discount.cs" />
     <Compile Include="Models\Drink.cs" />
     <Compile Include="Models\Entree.cs" />
     <Compile Include="Models\Order.cs" />
@@ -273,6 +286,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709030112286_addUserInfoConstraints.resx">
       <DependentUpon>201709030112286_addUserInfoConstraints.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709030217392_addDiscountModel.resx">
+      <DependentUpon>201709030217392_addDiscountModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709030228527_addFlagToDiscountModel.resx">
+      <DependentUpon>201709030228527_addFlagToDiscountModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709030331045_changeOrderModelDiscountToDecimal.resx">
+      <DependentUpon>201709030331045_changeOrderModelDiscountToDecimal.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -28,7 +28,8 @@ namespace Restaurant.Controllers
                     if (user != null)
                     {
                         Session["serverName"] = user.FullName;
-                        FormsAuthentication.SetAuthCookie(u.ServerNumber.ToString(), false);
+                        Session["serverId"] = user.Id;
+                        FormsAuthentication.SetAuthCookie(u.ServerNumber, false);
                         return RedirectToAction("Index", "Home");
                     }
                 }
@@ -43,5 +44,7 @@ namespace Restaurant.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
         }
+
+        
     }
 }
