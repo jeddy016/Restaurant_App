@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Jeddy's</title>
+    <style type="text/css">.server-name { }</style>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -17,6 +18,12 @@
                     <li>@Html.ActionLink("Order History", "OrderHistory", "Order")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        @if (Session["serverName"] != null)
+                        {
+                            <p class="server-name">Server: @Session["serverName"].ToString()</p>
+                        }
+                    </li>
                     <li>@Html.ActionLink("Log Off", "LogOff", "Account")</li>
                 </ul>
             </div>

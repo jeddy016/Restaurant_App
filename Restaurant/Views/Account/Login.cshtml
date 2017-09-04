@@ -8,14 +8,12 @@
 <div class="center">
     <h2>Server Login</h2>
     <hr/>
-
     @if (ViewBag.message != null)
     {
         <div>
             <span class="field-validation-error">@ViewBag.message</span>
         </div>
     }
-
     @using (Html.BeginForm("Login", "Account", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
@@ -34,7 +32,6 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     }
 </div>
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

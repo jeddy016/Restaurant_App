@@ -13,7 +13,7 @@ namespace Restaurant.Models
         public string Name { get; set; }
         public decimal Price { get; set; }
         public bool onMenu { get; set; }
-        [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Quantity must be a number")]
+        [RegularExpression("([0-9]*)", ErrorMessage = "Quantity must be a number")]
         public int Quantity { get; set; }
     }
 }

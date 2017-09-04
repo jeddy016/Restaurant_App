@@ -35,4 +35,11 @@ textarea {
     color: #2A9FD6 !important;
 }
 
+.server-name {
+    padding: 15px 15px;
+    margin-bottom: 0;
+    border-right: 2px solid #888888;
+    color: white;
+}
+
 

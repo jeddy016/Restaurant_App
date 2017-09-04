@@ -9,15 +9,13 @@
 <div class="row text-center">
     <h2>Order Detail</h2>
 </div>
-
 <div class="row">
     <div class="col-md-3">
-        <p>@($"{Model.Order.DateTime.ToString(CultureInfo.CurrentCulture):g}")</p>
+        <p>@($"{Model.Order.DateTime.ToString(CultureInfo.InvariantCulture):g}")</p>
         <p>Server: @Model.Order.Server.FullName</p>
     </div>
 </div>
 <hr/>
-
 <div class="row text-right">
     @foreach (var item in Model.OrderedItems)
     {
@@ -35,7 +33,6 @@
         </div>
     }
 </div>
-
 <hr/>
 <div class="row text-right">
     <div class="col-md-3">

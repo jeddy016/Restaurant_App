@@ -1,17 +1,13 @@
 ﻿@model Restaurant.ViewModels.MenuViewModel
 @{
-    ViewBag.Title = "Place Order";
+    ViewBag.Title = "New Order";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @Styles.Render("~/Content/order-page.css")
 
 <div class="row text-center">
     <h3>New Order</h3>
-    @if (Session["serverName"] != null)
-    {
-        <h6>Server: @Session["serverName"].ToString()</h6>
-    }
-
+    
     @if (TempData["message"] != null)
     {
         <div>

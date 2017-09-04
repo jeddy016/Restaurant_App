@@ -15,7 +15,7 @@ namespace Restaurant.Models
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Discount percentage required")]
-        [Range(1, 100, ErrorMessage = "Discount percentage must be a number from 1 to 100")]
+        [Range(0, 100, ErrorMessage = "Discount percentage must be a number from 1 to 100")]
         public int Percentage { get; set; }
     }
 }
