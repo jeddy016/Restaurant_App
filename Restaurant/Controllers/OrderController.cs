@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Web.Mvc;
 using Restaurant.Models;
 using Restaurant.Services;
@@ -47,6 +46,7 @@ namespace Restaurant.Controllers
         public ActionResult SaveOrder(Order order)
         {
             OrderService.Save(order);
+
             return RedirectToAction("OrderHistory");
         }
 

@@ -207,6 +207,26 @@
     <Compile Include="Migrations\201709032054041_addServerIdToOrder.Designer.cs">
       <DependentUpon>201709032054041_addServerIdToOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709041735311_splitFullNameInUserModel.cs" />
+    <Compile Include="Migrations\201709041735311_splitFullNameInUserModel.Designer.cs">
+      <DependentUpon>201709041735311_splitFullNameInUserModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709041759324_addOrderedItemModel.cs" />
+    <Compile Include="Migrations\201709041759324_addOrderedItemModel.Designer.cs">
+      <DependentUpon>201709041759324_addOrderedItemModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709041824444_removeNameRequirementsFromUser.cs" />
+    <Compile Include="Migrations\201709041824444_removeNameRequirementsFromUser.Designer.cs">
+      <DependentUpon>201709041824444_removeNameRequirementsFromUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709041851504_fixOrderedItemModel.cs" />
+    <Compile Include="Migrations\201709041851504_fixOrderedItemModel.Designer.cs">
+      <DependentUpon>201709041851504_fixOrderedItemModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709042048550_removeOrderedItemModel.cs" />
+    <Compile Include="Migrations\201709042048550_removeOrderedItemModel.Designer.cs">
+      <DependentUpon>201709042048550_removeOrderedItemModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppDbContext.cs" />
     <Compile Include="Models\Appetizer.cs" />
@@ -267,6 +287,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Order\OrderHistory.cshtml" />
     <Content Include="Views\Order\OrderDetail.cshtml" />
+    <Content Include="Views\Account\Users.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -323,6 +344,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709032054041_addServerIdToOrder.resx">
       <DependentUpon>201709032054041_addServerIdToOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709041735311_splitFullNameInUserModel.resx">
+      <DependentUpon>201709041735311_splitFullNameInUserModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709041759324_addOrderedItemModel.resx">
+      <DependentUpon>201709041759324_addOrderedItemModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709041824444_removeNameRequirementsFromUser.resx">
+      <DependentUpon>201709041824444_removeNameRequirementsFromUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709041851504_fixOrderedItemModel.resx">
+      <DependentUpon>201709041851504_fixOrderedItemModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709042048550_removeOrderedItemModel.resx">
+      <DependentUpon>201709042048550_removeOrderedItemModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

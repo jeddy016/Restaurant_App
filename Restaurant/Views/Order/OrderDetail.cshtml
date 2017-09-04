@@ -1,4 +1,5 @@
 ﻿@using System.Globalization
+@using Restaurant.Interfaces
 @model Restaurant.ViewModels.OrderDetailViewModel
 @{
     ViewBag.Title = "Order Detail";
@@ -12,50 +13,52 @@
 <div class="row">
     <div class="col-md-3">
         <p>@($"{Model.Order.DateTime.ToString(CultureInfo.InvariantCulture):g}")</p>
-        <p>Server: @Model.Order.Server.FullName</p>
     </div>
 </div>
 <hr/>
-<div class="row text-right">
-    @foreach (var item in Model.OrderedItems)
-    {
-        <div class="col-md-3">
-            <p class="item-name"> @item.Name</p>
-        </div>
-        <div class="col-md-3">
-            <p> $@item.Price</p>
-        </div>
-        <div class="col-md-3">
-            <p>x @item.Quantity</p>
-        </div>
-        <div class="col-md-3">
-            <p class="item-total">$@(item.Quantity * item.Price)</p>
-        </div>
-    }
-</div>
-<hr/>
-<div class="row text-right">
-    <div class="col-md-3">
-        @using (Html.BeginForm("SaveOrder", "Order", FormMethod.Post))
+
+@using (Html.BeginForm("SaveOrder", "Order", FormMethod.Post))
+{
+
+    @Html.HiddenFor(m => m.Order.Server)
+    @Html.HiddenFor(m => m.Order.ServerId)
+    @Html.HiddenFor(m => m.Order.DateTime)
+    @Html.HiddenFor(m => m.Order.SubTotal)
+    @Html.HiddenFor(m => m.Order.Discount)
+    @Html.HiddenFor(m => m.Order.PreTaxTotal)
+    @Html.HiddenFor(m => m.Order.Tax)
+    @Html.HiddenFor(m => m.Order.Total)
+
+    <div class="row text-right">
+        @for (var i = 0; i < Model.OrderedItems.Count; i++)
         {
-            @Html.HiddenFor(m => m.Order.Server)
-            @Html.HiddenFor(m => m.Order.ServerId)
-            @Html.HiddenFor(m => m.Order.DateTime)
-            @Html.HiddenFor(m => m.Order.SubTotal)
-            @Html.HiddenFor(m => m.Order.Discount)
-            @Html.HiddenFor(m => m.Order.PreTaxTotal)
-            @Html.HiddenFor(m => m.Order.Tax)
-            @Html.HiddenFor(m => m.Order.Total)
-            <button type="submit" class="btn btn-block btn-primary">Submit Order</button>
+            <div class="col-md-3">
+                <p class="item-name"> @Model.OrderedItems[i].Name</p>
+            </div>
+            <div class="col-md-3">
+                <p> $@Model.OrderedItems[i].Price</p>
+            </div>
+            <div class="col-md-3">
+                <p>x @Model.OrderedItems[i].Quantity</p>
+            </div>
+            <div class="col-md-3">
+                <p class="item-total">$@(Model.OrderedItems[i].Quantity * Model.OrderedItems[i].Price)</p>
+            </div>
         }
-        <a href="~/Home/Index" class="btn btn-block btn-danger">Cancel Order</a>
     </div>
-    <p>SubTotal: $@Model.Order.SubTotal</p>
-    <p>Discount: $@Model.Order.Discount</p>
-    <p>Pre-Tax Total: $@Model.Order.PreTaxTotal</p>
-    <p>Tax: $@Model.Order.Tax</p>
-    <p class="order-total">Total: $@Model.Order.Total</p>
-</div>
+    <hr/>
+    <div class="row text-right">
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-block btn-primary">Submit Order</button>
+            <a href="~/Home/Index" class="btn btn-block btn-danger">Cancel Order</a>
+        </div>
+        <p>SubTotal: $@Model.Order.SubTotal</p>
+        <p>Discount: $@Model.Order.Discount</p>
+        <p>Pre-Tax Total: $@Model.Order.PreTaxTotal</p>
+        <p>Tax: $@Model.Order.Tax</p>
+        <p class="order-total">Total: $@Model.Order.Total</p>
+    </div>
+}
 
 
         
