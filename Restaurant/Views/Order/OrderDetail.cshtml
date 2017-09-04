@@ -1,4 +1,5 @@
-﻿@model Restaurant.ViewModels.OrderDetailViewModel
+﻿@using System.Globalization
+@model Restaurant.ViewModels.OrderDetailViewModel
 @{
     ViewBag.Title = "Order Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,7 +12,7 @@
 
 <div class="row">
     <div class="col-md-3">
-        <p>@($"{Model.Order.DateTime.ToString():g}")</p>
+        <p>@($"{Model.Order.DateTime.ToString(CultureInfo.CurrentCulture):g}")</p>
         <p>Server: @Model.Order.Server.FullName</p>
     </div>
 </div>
@@ -50,7 +51,7 @@
             @Html.HiddenFor(m => m.Order.Total)
             <button type="submit" class="btn btn-block btn-primary">Submit Order</button>
         }
-        <a href="/Home/Index" class="btn btn-block btn-danger">Cancel Order</a>
+        <a href="~/Home/Index" class="btn btn-block btn-danger">Cancel Order</a>
     </div>
     <p>SubTotal: $@Model.Order.SubTotal</p>
     <p>Discount: $@Model.Order.Discount</p>

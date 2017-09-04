@@ -17,7 +17,7 @@ namespace Restaurant.ViewModels
         public List<Dessert> Desserts { get; set; }
         public List<Drink> Drinks { get; set; }
         public List<Discount> Discounts { get; set; }
-        [Display(Name = "Apply Discount")]
+        [Display(Name = "Discount: ")]
         public int SelectedDiscount { get; set; }
     }
 }
