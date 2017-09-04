@@ -1,8 +1,44 @@
-﻿
+﻿@model Restaurant.ViewModels.AddUserViewModel
 @{
-    ViewBag.Title = "AddUser";
+    ViewBag.Title = "Add Server";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>AddUser</h2>
+<h3>Add Server</h3>
+<hr/>
 
+@if (ViewBag.message != null)
+{
+    <span class="field-validation-error">@ViewBag.message</span>
+}
+
+@using (Html.BeginForm("SaveUser", "Account", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+
+    <div class="form-group">
+        @Html.LabelFor(u=>u.FirstName)
+        @Html.TextBoxFor(u=>u.FirstName, new {@class= "form-control"})
+        @Html.ValidationMessageFor(u => u.FirstName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(u => u.LastName)
+        @Html.TextBoxFor(u => u.LastName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(u => u.LastName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(u => u.Password)
+        @Html.PasswordFor(u => u.Password, new { @class = "form-control" })
+        @Html.ValidationMessageFor(u => u.Password)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(u => u.PasswordConfirm)
+        @Html.PasswordFor(u => u.PasswordConfirm, new { @class = "form-control" })
+        @Html.ValidationMessageFor(u => u.PasswordConfirm)
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

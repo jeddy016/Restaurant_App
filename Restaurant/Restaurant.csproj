@@ -228,6 +228,7 @@
       <DependentUpon>201709042048550_removeOrderedItemModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ViewModels\AddUserViewModel.cs" />
     <Compile Include="Models\AppDbContext.cs" />
     <Compile Include="Models\Appetizer.cs" />
     <Compile Include="Models\Dessert.cs" />

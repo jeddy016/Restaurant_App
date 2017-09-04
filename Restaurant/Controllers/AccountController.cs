@@ -29,7 +29,6 @@ namespace Restaurant.Controllers
                     if (user != null)
                     {
                         Session["serverName"] = user.FullName;
-                        Session["serverId"] = user.Id;
                         FormsAuthentication.SetAuthCookie(u.ServerNumber, false);
                         return RedirectToAction("Index", "Home");
                     }
@@ -43,6 +42,7 @@ namespace Restaurant.Controllers
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
+            Session["serverName"] = null;
             return RedirectToAction("Login");
         }
 
@@ -79,6 +79,34 @@ namespace Restaurant.Controllers
         public ActionResult AddUser()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult SaveUser(AddUserViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new User()
+                {
+                    Active = true,
+                    FirstName = viewModel.FirstName,
+                    LastName = viewModel.LastName,
+                    ServerNumber = UserService.GenerateServerNumber(),
+                    Password = viewModel.Password
+                };
+
+                UserService.Save(user);
+
+                var model = new UsersViewModel()
+                {
+                    Users = UserService.getUsers()
+                };
+
+                return View("Users", model);
+            }
+
+            ViewBag.message = "Error creating server. Try again.";
+            return View("AddUser");
         }
     }
 }

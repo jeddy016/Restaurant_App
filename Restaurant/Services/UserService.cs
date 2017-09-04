@@ -43,5 +43,30 @@ namespace Restaurant.Services
                 _context.SaveChanges();
             }
         }
+
+        public static void Save(User user)
+        {
+            using (var _context = new AppDbContext())
+            {
+                _context.Users.Add(user);
+                _context.SaveChanges();
+            }
+        }
+
+        public static string GenerateServerNumber()
+        {
+            using (var _context = new AppDbContext())
+            {
+                var newestServer = _context.Users.OrderByDescending(u=>u.ServerNumber).First();
+                var newestServerNumber = int.Parse(newestServer.ServerNumber);
+
+                if (newestServerNumber < 9999)
+                {
+                    return int.Parse(newestServer.ServerNumber) + 1 + "";
+                }
+
+                return "1000";
+            }
+        }
     }
 }
