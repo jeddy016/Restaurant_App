@@ -1,0 +1,29 @@
+﻿.btn-success {
+    margin-top: 20px;
+    float: right;
+}
+
+table {
+    width: 100%;
+}
+
+td, th {
+    padding: .5%;
+}
+
+thead {
+    color: #2A9FD6;
+    border: 1px solid #2A9FD6;
+}
+
+.delete-link {
+    color: red !important;
+}
+
+.edit-link {
+    color: #2A9FD6 !important;
+}
+
+a:hover {
+    text-decoration: none !important;
+}

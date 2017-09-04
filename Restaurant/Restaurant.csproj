@@ -246,6 +246,7 @@
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\OrderDetailViewModel.cs" />
     <Compile Include="ViewModels\OrderHistoryViewModel.cs" />
+    <Compile Include="ViewModels\UsersViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-cyborg.css" />
@@ -253,6 +254,7 @@
     <Content Include="Content\order-detail.css" />
     <Content Include="Content\order-page.css" />
     <Content Include="Content\order-history.css" />
+    <Content Include="Content\users.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -288,6 +290,8 @@
     <Content Include="Views\Order\OrderHistory.cshtml" />
     <Content Include="Views\Order\OrderDetail.cshtml" />
     <Content Include="Views\Account\Users.cshtml" />
+    <Content Include="Views\Account\EditUser.cshtml" />
+    <Content Include="Views\Account\AddUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

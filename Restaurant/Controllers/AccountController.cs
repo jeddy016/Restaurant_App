@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using Restaurant.Models;
+using Restaurant.Services;
+using Restaurant.ViewModels;
 
 namespace Restaurant.Controllers
 {
@@ -44,5 +46,39 @@ namespace Restaurant.Controllers
             return RedirectToAction("Login");
         }
 
+        [Authorize]
+        public ActionResult Users()
+        {
+            var model = new UsersViewModel()
+            {
+                Users = UserService.getUsers()
+            };
+
+            return View(model);
+        }
+
+        [Authorize]
+        public ActionResult EditUser(User user)
+        {
+            return View(user);
+        }
+
+        [Authorize]
+        public ActionResult DeleteUser(User user)
+        {
+            UserService.DeleteUser(user);
+
+            var model = new UsersViewModel()
+            {
+                Users = UserService.getUsers()
+            };
+
+            return View("Users", model);
+        }
+
+        public ActionResult AddUser()
+        {
+            return View();
+        }
     }
 }
