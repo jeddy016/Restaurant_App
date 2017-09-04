@@ -3,13 +3,14 @@
     ViewBag.Title = "Order History";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@Styles.Render("~/Content/order-history.css")
 
 <h2>Order History</h2>
 <hr/>
 <div class="table-responsive">
-    <table class="table-hover table-striped" style="width: 100%">
+    <table class="table-hover table-striped">
         <thead>
-            <tr style="color: #2A9FD6">
+            <tr>
                 <th>Date/Time</th>
                 <th>Server</th>
                 <th>Sub-Total</th>

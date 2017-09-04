@@ -1,0 +1,16 @@
+﻿table {
+    width: 100%;
+}
+
+thead {
+    border: 1px solid #2A9FD6;
+}
+
+th, td {
+    padding: .5%;
+}
+
+th {
+    padding-bottom: .1%;
+    color: #2A9FD6;
+}
