@@ -43,7 +43,7 @@ namespace Restaurant.Services
             }
         }
 
-        public static void DeleteUser(User user)
+        public static void Delete(User user)
         {
             using (var Db = new AppDbContext())
             {

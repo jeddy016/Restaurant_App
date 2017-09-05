@@ -15,6 +15,11 @@
 </div>
 <hr />
 
+@if (ViewBag.message != null)
+{
+    <span class="field-validation-error">@ViewBag.message</span>
+}
+
 <h5>Appetizers</h5>
 <table class="table-striped table-responsive">
     <thead>
@@ -30,9 +35,10 @@
     {
         if (Model.Items[i].MenuItemTypeId == (int) MenuItem.APPETIZER)
         {
+            @Html.HiddenFor(x => x.Items[i].Id)
             <tr>
                 <td>@Model.Items[i].Name</td>
-                <td>@Model.Items[i].Price</td>
+                <td>$@Model.Items[i].Price</td>
                 <td class="align-right">@Html.ActionLink("Edit", "Edit", @Model.Items[i], new { @class = "edit-link" })</td>
                 <td class="align-right">@Html.ActionLink("Delete", "Delete", @Model.Items[i], new { @class = "delete-link" })</td>
             </tr>
@@ -54,11 +60,12 @@
     <tbody>
     @for (var i = 0; i < @Model.Items.Count; i++)
     {
-        if (Model.Items[i].MenuItemTypeId == (int) MenuItem.ENTREE)
+        if (Model.Items[i].MenuItemTypeId == (int)MenuItem.ENTREE)
         {
+            @Html.HiddenFor(x => x.Items[i].Id)
             <tr>
                 <td>@Model.Items[i].Name</td>
-                <td>@Model.Items[i].Price</td>
+                <td>$@Model.Items[i].Price</td>
                 <td class="align-right">@Html.ActionLink("Edit", "Edit", @Model.Items[i], new { @class = "edit-link" })</td>
                 <td class="align-right">@Html.ActionLink("Delete", "Delete", @Model.Items[i], new { @class = "delete-link" })</td>
             </tr>
@@ -80,11 +87,12 @@
     <tbody>
     @for (var i = 0; i < @Model.Items.Count; i++)
     {
-        if (Model.Items[i].MenuItemTypeId == (int) MenuItem.SIDE)
+        if (Model.Items[i].MenuItemTypeId == (int)MenuItem.SIDE)
         {
+            @Html.HiddenFor(x => x.Items[i].Id)
             <tr>
                 <td>@Model.Items[i].Name</td>
-                <td>@Model.Items[i].Price</td>
+                <td>$@Model.Items[i].Price</td>
                 <td class="align-right">@Html.ActionLink("Edit", "Edit", @Model.Items[i], new { @class = "edit-link" })</td>
                 <td class="align-right">@Html.ActionLink("Delete", "Delete", @Model.Items[i], new { @class = "delete-link" })</td>
             </tr>
@@ -108,9 +116,10 @@
     {
         if (Model.Items[i].MenuItemTypeId == (int)MenuItem.DESSERT)
         {
+            @Html.HiddenFor(x => x.Items[i].Id)
             <tr>
                 <td>@Model.Items[i].Name</td>
-                <td>@Model.Items[i].Price</td>
+                <td>$@Model.Items[i].Price</td>
                 <td class="align-right">@Html.ActionLink("Edit", "Edit", @Model.Items[i], new { @class = "edit-link" })</td>
                 <td class="align-right">@Html.ActionLink("Delete", "Delete", @Model.Items[i], new { @class = "delete-link" })</td>
             </tr>
@@ -132,11 +141,12 @@
     <tbody>
     @for (var i = 0; i < @Model.Items.Count; i++)
     {
-        if (Model.Items[i].MenuItemTypeId == (int) MenuItem.DRINK)
+        if (Model.Items[i].MenuItemTypeId == (int)MenuItem.DRINK)
         {
+            @Html.HiddenFor(x => x.Items[i].Id)
             <tr>
                 <td>@Model.Items[i].Name</td>
-                <td>@Model.Items[i].Price</td>
+                <td>$@Model.Items[i].Price</td>
                 <td class="align-right">@Html.ActionLink("Edit", "Edit", @Model.Items[i], new { @class = "edit-link" })</td>
                 <td class="align-right">@Html.ActionLink("Delete", "Delete", @Model.Items[i], new { @class = "delete-link" })</td>
             </tr>

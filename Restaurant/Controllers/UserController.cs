@@ -70,7 +70,7 @@ namespace Restaurant.Controllers
         [Authorize]
         public ActionResult DeleteUser(User user)
         {
-            UserService.DeleteUser(user);
+            UserService.Delete(user);
 
             var model = new UsersViewModel()
             {

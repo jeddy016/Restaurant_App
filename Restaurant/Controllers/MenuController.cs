@@ -18,21 +18,15 @@ namespace Restaurant.Controllers
             return View(viewModel);
         }
 
-        public ActionResult NewMenuItem()
-        {
-            return View();
-        }
-
         public ActionResult Edit(MenuItem item)
         {
-            MenuService.Edit(item);
-
-            var viewModel = new MenuViewModel()
+            var viewModel = new MenuItemFormViewModel()
             {
-                Items = MenuService.GetMenuItems()
+                Id = item.Id,
+                MenuItemTypeId = item.MenuItemTypeId
             };
 
-            return View("Menu", viewModel);
+            return View(viewModel);
         }
 
         public ActionResult Delete(MenuItem item)
@@ -50,7 +44,54 @@ namespace Restaurant.Controllers
 
         public ActionResult Add()
         {
-            return View();
+            MenuItemFormViewModel viewModel = new MenuItemFormViewModel()
+            {
+                Types = MenuService.getItemTypes()
+            };
+            return View(viewModel);
+        }
+
+        public ActionResult Save(MenuItem item)
+        {
+            if (ModelState.IsValid)
+            {
+                if (MenuService.Save(item))
+                {
+                    var menuViewModel = new MenuViewModel()
+                    {
+                        Items = MenuService.GetMenuItems()
+                    };
+                    return View("Menu", menuViewModel);
+                }
+
+                ViewBag.message = "Item name already exists. Please choose another.";
+
+                if (item.Id == 0)
+                {
+                    var newItemViewModel = new MenuItemFormViewModel()
+                    {
+                        Types = MenuService.getItemTypes()
+                    };
+
+                    return View("Add", newItemViewModel);
+                }
+
+                var editItemViewModel = new MenuItemFormViewModel()
+                {
+                    Id = item.Id,
+                    MenuItemTypeId = item.MenuItemTypeId
+                };
+
+                return View("Edit", editItemViewModel);
+            }
+
+            ViewBag.message = "Error saving item. Try again.";
+
+            var viewModel = new MenuViewModel()
+            {
+                Items = MenuService.GetMenuItems()
+            };
+            return View("Menu", viewModel);
         }
     }
 }

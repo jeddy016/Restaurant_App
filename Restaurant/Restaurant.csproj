@@ -246,7 +246,7 @@
     <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\EditUserFormViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
-    <Compile Include="ViewModels\NewMenuItemViewModel.cs" />
+    <Compile Include="ViewModels\MenuItemFormViewModel.cs" />
     <Compile Include="ViewModels\NewUserFormViewModel.cs" />
     <Compile Include="Models\AppDbContext.cs" />
     <Compile Include="Models\Discount.cs" />
@@ -308,7 +308,6 @@
     <Content Include="Views\User\NewUserForm.cshtml" />
     <Content Include="Views\User\EditUserForm.cshtml" />
     <Content Include="Views\User\ChangePassword.cshtml" />
-    <Content Include="Views\Menu\NewMenuItem.cshtml" />
     <Content Include="Views\Menu\Menu.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\Menu\Add.cshtml" />

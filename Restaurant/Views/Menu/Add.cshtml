@@ -1,8 +1,43 @@
-﻿
+﻿@model Restaurant.ViewModels.MenuItemFormViewModel
 @{
     ViewBag.Title = "Add";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Add</h2>
+<h3>Add Menu Item</h3>
+<hr/>
+
+@if (ViewBag.message != null)
+{
+    <span class="field-validation-error">@ViewBag.message</span>
+}
+
+@using (Html.BeginForm("Save", "Menu", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+
+    <div class="form-group">
+        @Html.LabelFor(i => i.MenuItemTypeId)
+        @Html.DropDownListFor(i => i.MenuItemTypeId, new SelectList(Model.Types, "Id", "Name"), new {@class = "form-control"})
+        @Html.ValidationMessageFor(i => i.MenuItemTypeId)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(i => i.Name)
+        @Html.TextBoxFor(i => i.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(i => i.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(i => i.Price)
+        @Html.TextBoxFor(i => i.Price, new { @class = "form-control", type = "number", min = 0.00, max=100, step= ".01" })
+        @Html.ValidationMessageFor(i => i.Price)
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
 

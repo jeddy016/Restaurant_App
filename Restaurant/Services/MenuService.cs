@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using Restaurant.Interfaces;
 using Restaurant.Models;
 using Restaurant.ViewModels;
 
@@ -17,6 +16,14 @@ namespace Restaurant.Services
             }
         }
 
+        public static List<MenuItemType> getItemTypes()
+        {
+            using (var Db = new AppDbContext())
+            {
+                return Db.MenuItemTypes.ToList();
+            }
+        }
+        
         public static List<MenuItem> GetOrderedItems(NewOrderViewModel menu)
         {
             menu.Items.RemoveAll(x=> NotOrdered(x));
@@ -37,9 +44,46 @@ namespace Restaurant.Services
             }
         }
 
-        public static void Edit(MenuItem item)
+        public static bool Save(MenuItem item)
         {
-            
+            bool saved = false;
+
+            using (var Db = new AppDbContext())
+            {
+                
+                if(item.Id != 0)
+                {
+                    var itemInDb = Db.MenuItems.Find(item.Id);
+
+                    if (item.Name == itemInDb.Name)
+                    {
+                        itemInDb.Price = item.Price;
+                        saved = true;
+                    }
+                    else if (Unique(item.Name))
+                    {
+                        itemInDb.Name = item.Name;
+                        itemInDb.Price = item.Price;
+                        saved = true;
+                    }
+                }
+                else if (Unique(item.Name))
+                {
+                    Db.MenuItems.Add(item);
+                    saved = true;
+                }
+                Db.SaveChanges();
+                return saved;
+            }
         }
+
+        private static bool Unique(string name)
+        {
+            using (var Db = new AppDbContext())
+            {
+                return Db.MenuItems.SingleOrDefault(i => i.Name == name) == null;
+            }
+        }
+
     }
 }
