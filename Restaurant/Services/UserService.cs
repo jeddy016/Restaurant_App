@@ -48,7 +48,17 @@ namespace Restaurant.Services
         {
             using (var _context = new AppDbContext())
             {
-                _context.Users.Add(user);
+                if (user.Id == 0)
+                {
+                    _context.Users.Add(user);
+                }
+                else
+                {
+                    var userInDb = _context.Users.Find(user.Id);
+                    userInDb.FirstName = user.FirstName;
+                    userInDb.LastName = user.LastName;
+                }
+
                 _context.SaveChanges();
             }
         }

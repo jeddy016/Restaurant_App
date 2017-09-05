@@ -29,6 +29,7 @@ namespace Restaurant.Controllers
                     if (user != null)
                     {
                         Session["serverName"] = user.FullName;
+                        Session["serverId"] = user.Id;
                         FormsAuthentication.SetAuthCookie(u.ServerNumber, false);
                         return RedirectToAction("Index", "Home");
                     }
@@ -60,7 +61,13 @@ namespace Restaurant.Controllers
         [Authorize]
         public ActionResult EditUser(User user)
         {
-            return View(user);
+            var viewModel = new EditUserFormViewModel()
+            {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+            };
+            return View("EditUserForm", viewModel);
         }
 
         [Authorize]
@@ -78,16 +85,17 @@ namespace Restaurant.Controllers
 
         public ActionResult AddUser()
         {
-            return View();
+            return View("NewUserForm");
         }
 
         [HttpPost]
-        public ActionResult SaveUser(AddUserViewModel viewModel)
+        public ActionResult SaveNewUser(NewUserFormViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
                 var user = new User()
                 {
+                    Id = viewModel.Id ?? default(int),
                     Active = true,
                     FirstName = viewModel.FirstName,
                     LastName = viewModel.LastName,
@@ -106,7 +114,40 @@ namespace Restaurant.Controllers
             }
 
             ViewBag.message = "Error creating server. Try again.";
-            return View("AddUser");
+            return View("NewUserForm");
+        }
+
+        [HttpPost]
+        public ActionResult SaveUser(EditUserFormViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new User()
+                {
+                    Id = viewModel.Id ?? default(int),
+                    Active = true,
+                    FirstName = viewModel.FirstName,
+                    LastName = viewModel.LastName,
+                    ServerNumber = UserService.GenerateServerNumber()
+                };
+
+                UserService.Save(user);
+
+                if (int.Parse(Session["serverId"].ToString()) == user.Id && Session["serverName"].ToString() != user.FullName)
+                {
+                    Session["serverName"] = user.FullName;
+                }
+
+                var model = new UsersViewModel()
+                {
+                    Users = UserService.getUsers()
+                };
+
+                return View("Users", model);
+            }
+
+            ViewBag.message = "Error editing server. Try again.";
+            return View("EditUserForm");
         }
     }
 }

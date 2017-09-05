@@ -1,4 +1,4 @@
-﻿@model Restaurant.ViewModels.AddUserViewModel
+﻿@model Restaurant.ViewModels.NewUserFormViewModel
 @{
     ViewBag.Title = "Add Server";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,9 +12,11 @@
     <span class="field-validation-error">@ViewBag.message</span>
 }
 
-@using (Html.BeginForm("SaveUser", "Account", FormMethod.Post))
+@using (Html.BeginForm("SaveNewUser", "Account", FormMethod.Post))
 {
     @Html.ValidationSummary(true)
+    @Html.HiddenFor(u=>u.Id)
+
 
     <div class="form-group">
         @Html.LabelFor(u=>u.FirstName)

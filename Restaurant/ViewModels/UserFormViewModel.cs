@@ -2,8 +2,10 @@
 
 namespace Restaurant.ViewModels
 {
-    public class AddUserViewModel
+    public class NewUserFormViewModel
     {
+        public int? Id { get; set; }
+
         [StringLength(25, ErrorMessage = "Names must be between 1 and 25 characters")]
         [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "Names can only contain letters")]
         public string FirstName { get; set; }
@@ -19,7 +21,5 @@ namespace Restaurant.ViewModels
         [Compare("Password", ErrorMessage = "Passwords do not match")]
         [Display(Name = "Confirm Password")]
         public string PasswordConfirm { get; set; }
-
-        public bool Active { get; set; }
     }
 }
