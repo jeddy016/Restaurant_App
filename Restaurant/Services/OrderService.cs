@@ -33,18 +33,18 @@ namespace Restaurant.Services
 
         public static void Save(Order order)
         {
-            using (var _context = new AppDbContext())
+            using (var Db = new AppDbContext())
             {
-                _context.Orders.Add(order);
-                _context.SaveChanges();
+                Db.Orders.Add(order);
+                Db.SaveChanges();
             }
         }
 
         public static List<Order> GetOrderHistory()
         {
-            using (var _context = new AppDbContext())
+            using (var Db = new AppDbContext())
             {
-                return _context.Orders.Include("Server").ToList();
+                return Db.Orders.Include("Server").ToList();
             }
         }
     }

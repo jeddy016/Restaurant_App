@@ -11,13 +11,13 @@ namespace Restaurant.Services
         public static MenuViewModel GetMenuItems()
         {
             var menu = new MenuViewModel();
-            using (AppDbContext _context = new AppDbContext())
+            using (AppDbContext Db = new AppDbContext())
             {
-                menu.Appetizers = _context.Appetizers.ToList();
-                menu.Entrees = _context.Entrees.ToList();
-                menu.Sides = _context.Sides.ToList();
-                menu.Desserts = _context.Desserts.ToList();
-                menu.Drinks = _context.Drinks.ToList();
+                menu.Appetizers = Db.Appetizers.ToList();
+                menu.Entrees = Db.Entrees.ToList();
+                menu.Sides = Db.Sides.ToList();
+                menu.Desserts = Db.Desserts.ToList();
+                menu.Drinks = Db.Drinks.ToList();
             }
             return menu;
         }

@@ -9,65 +9,73 @@ namespace Restaurant.Services
 {
     public class UserService
     {
+        public static User ValidateLogin(User login)
+        {
+            using (var Db = new AppDbContext())
+            {
+                return Db.Users.SingleOrDefault(s => s.ServerNumber == login.ServerNumber && s.Password == login.Password);
+            }
+        }
+
         public static User GetUserById(string userId)
         {
-            var Id = int.Parse(userId);
+            var id = int.Parse(userId);
 
-            using (AppDbContext _context = new AppDbContext())
+            using (AppDbContext Db = new AppDbContext())
             {
-                return _context.Users.Single(u => u.Id == Id);
+                return Db.Users.Single(u => u.Id == id);
             }
         }
 
         public static User GetUserById(int userId)
         {
-            using (AppDbContext _context = new AppDbContext())
+            using (AppDbContext Db = new AppDbContext())
             {
-                return _context.Users.Single(u => u.Id == userId);
+                return Db.Users.Single(u => u.Id == userId);
             }
         }
 
         public static List<User> getUsers()
         {
-            using (var _context = new AppDbContext())
+            using (var Db = new AppDbContext())
             {
-                return _context.Users.ToList();
+                return Db.Users.ToList();
             }
         }
 
         public static void DeleteUser(User user)
         {
-            using (var _context = new AppDbContext())
+            using (var Db = new AppDbContext())
             {
-                _context.Entry(user).State = EntityState.Deleted;
-                _context.SaveChanges();
+                Db.Entry(user).State = EntityState.Deleted;
+                Db.SaveChanges();
             }
         }
 
         public static void Save(User user)
         {
-            using (var _context = new AppDbContext())
+            using (var Db = new AppDbContext())
             {
                 if (user.Id == 0)
                 {
-                    _context.Users.Add(user);
+                    Db.Users.Add(user);
                 }
                 else
                 {
-                    var userInDb = _context.Users.Find(user.Id);
+                    var userInDb = Db.Users.Find(user.Id);
                     userInDb.FirstName = user.FirstName;
                     userInDb.LastName = user.LastName;
                 }
 
-                _context.SaveChanges();
+                Db.SaveChanges();
             }
         }
 
         public static string GenerateServerNumber()
         {
-            using (var _context = new AppDbContext())
+            using (var Db = new AppDbContext())
             {
-                var newestServer = _context.Users.OrderByDescending(u=>u.ServerNumber).First();
+                var newestServer = Db.Users.OrderByDescending(u=>u.ServerNumber).First();
                 var newestServerNumber = int.Parse(newestServer.ServerNumber);
 
                 if (newestServerNumber < 9999)
@@ -81,14 +89,13 @@ namespace Restaurant.Services
 
         public static void UpdatePassword(User user)
         {
-            using (var _context = new AppDbContext())
+            using (var Db = new AppDbContext())
             {
-                
-                var userInDb = _context.Users.Find(user.Id);
+                var userInDb = Db.Users.Find(user.Id);
 
                 userInDb.Password = user.Password;
 
-                _context.SaveChanges();
+                Db.SaveChanges();
             }
         }
     }

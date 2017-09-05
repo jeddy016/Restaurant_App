@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using Restaurant.Interfaces;
 using Restaurant.Models;
-using Restaurant.ViewModels;
 
 namespace Restaurant.Services
 {
@@ -42,17 +40,17 @@ namespace Restaurant.Services
 
         public static List<Discount> GetDiscounts()
         {
-            using (AppDbContext _context = new AppDbContext())
+            using (AppDbContext Db = new AppDbContext())
             {
-                return _context.Discounts.ToList();
+                return Db.Discounts.ToList();
             }
         }
 
         public static List<Tax> GetTaxes()
         {
-            using (AppDbContext _context = new AppDbContext())
+            using (AppDbContext Db = new AppDbContext())
             {
-                return _context.Taxes.ToList();
+                return Db.Taxes.ToList();
             }
         }
 

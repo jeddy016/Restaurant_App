@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Security;
 using Restaurant.Models;
 using Restaurant.Services;
@@ -16,24 +15,25 @@ namespace Restaurant.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(User u)
+        public ActionResult Login(User login)
         {
             if (ModelState.IsValid)
             {
-                using (AppDbContext _context = new AppDbContext())
+                var user = UserService.ValidateLogin(login);
+
+                if (user != null)
                 {
-                    var user = _context.Users.SingleOrDefault(s=>s.ServerNumber == u.ServerNumber && s.Password == u.Password);
-                    if (user != null)
-                    {
-                        Session["serverName"] = user.FullName;
-                        Session["serverId"] = user.Id;
-                        FormsAuthentication.SetAuthCookie(u.ServerNumber, false);
-                        return RedirectToAction("NewOrder", "Order");
-                    }
+                    Session["serverName"] = user.FullName;
+                    Session["serverId"] = user.Id;
+                    FormsAuthentication.SetAuthCookie(user.ServerNumber, false);
+
+                    return RedirectToAction("NewOrder", "Order");
                 }
             }
+
             ModelState.Clear();
             ViewBag.message = "Server Number or Password Incorrect";
+
             return View();
         }
 

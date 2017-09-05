@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-
-//TODO: add other validations for server number, password, full name
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Restaurant.Models
 {
