@@ -14,9 +14,9 @@
             <div class="navbar-collapse collapse">
                 <span class="navbar-brand">Jeddy's Bistro</span>
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("New Order", "Index", "Home")</li>
+                    <li>@Html.ActionLink("New Order", "NewOrder", "Order")</li>
                     <li>@Html.ActionLink("Order History", "OrderHistory", "Order")</li>
-                    <li>@Html.ActionLink("Servers", "Users", "Account")</li>
+                    <li>@Html.ActionLink("Servers", "Users", "User")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -25,7 +25,7 @@
                             <p class="server-name">Server: @Session["serverName"].ToString()</p>
                         }
                     </li>
-                    <li>@Html.ActionLink("Log Off", "LogOff", "Account")</li>
+                    <li>@Html.ActionLink("Log Off", "LogOff", "User")</li>
                 </ul>
             </div>
         </div>

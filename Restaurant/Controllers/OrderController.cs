@@ -9,6 +9,14 @@ namespace Restaurant.Controllers
     [Authorize]
     public class OrderController : Controller
     {
+        public ActionResult NewOrder()
+        {
+            var viewModel = MenuService.GetMenuItems();
+            viewModel.Discounts = CashRegister.GetDiscounts();
+
+            return View(viewModel);
+        }
+
         [HttpPost]
         public ActionResult BuildOrder(MenuViewModel model)
         {
@@ -20,7 +28,7 @@ namespace Restaurant.Controllers
             }
             catch (NullReferenceException)
             {
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("Login", "User");
             }
 
             var orderedMenuItems = MenuService.GetOrderedItems(model);
@@ -39,7 +47,7 @@ namespace Restaurant.Controllers
             }
 
             TempData["message"] = "Orders must contain at least 1 item";
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("NewOrder", "Order");
         }
 
         [HttpPost]

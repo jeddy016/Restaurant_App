@@ -10,7 +10,7 @@ using Restaurant.ViewModels;
 
 namespace Restaurant.Controllers
 {
-    public class AccountController : Controller
+    public class UserController : Controller
     {
         public ActionResult Login()
         {
@@ -31,7 +31,7 @@ namespace Restaurant.Controllers
                         Session["serverName"] = user.FullName;
                         Session["serverId"] = user.Id;
                         FormsAuthentication.SetAuthCookie(u.ServerNumber, false);
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("NewOrder", "Order");
                     }
                 }
             }
@@ -83,6 +83,7 @@ namespace Restaurant.Controllers
             return View("Users", model);
         }
 
+        [Authorize]
         public ActionResult AddUser()
         {
             return View("NewUserForm");

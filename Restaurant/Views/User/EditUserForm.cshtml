@@ -12,7 +12,7 @@
     <span class="field-validation-error">@ViewBag.message</span>
 }
 
-@using (Html.BeginForm("SaveUser", "Account", FormMethod.Post))
+@using (Html.BeginForm("SaveUser", "User", FormMethod.Post))
 {
     @Html.ValidationSummary(true)
     @Html.HiddenFor(u => u.Id)
