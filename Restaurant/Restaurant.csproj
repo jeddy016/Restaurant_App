@@ -150,6 +150,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Enums\MenuItem.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -226,7 +227,17 @@
     <Compile Include="Migrations\201709042048550_removeOrderedItemModel.Designer.cs">
       <DependentUpon>201709042048550_removeOrderedItemModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709051325256_addMenuItemAndType.cs" />
+    <Compile Include="Migrations\201709051325256_addMenuItemAndType.Designer.cs">
+      <DependentUpon>201709051325256_addMenuItemAndType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709051329127_fixMenuItemTypeName.cs" />
+    <Compile Include="Migrations\201709051329127_fixMenuItemTypeName.Designer.cs">
+      <DependentUpon>201709051329127_fixMenuItemTypeName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\MenuItem.cs" />
+    <Compile Include="Models\MenuItemType.cs" />
     <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\EditUserFormViewModel.cs" />
     <Compile Include="ViewModels\NewUserFormViewModel.cs" />
@@ -366,6 +377,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709042048550_removeOrderedItemModel.resx">
       <DependentUpon>201709042048550_removeOrderedItemModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709051325256_addMenuItemAndType.resx">
+      <DependentUpon>201709051325256_addMenuItemAndType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709051329127_fixMenuItemTypeName.resx">
+      <DependentUpon>201709051329127_fixMenuItemTypeName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

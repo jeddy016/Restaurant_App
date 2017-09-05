@@ -13,36 +13,23 @@ namespace Restaurant.Services
             var menu = new MenuViewModel();
             using (AppDbContext Db = new AppDbContext())
             {
-                menu.Appetizers = Db.Appetizers.ToList();
-                menu.Entrees = Db.Entrees.ToList();
-                menu.Sides = Db.Sides.ToList();
-                menu.Desserts = Db.Desserts.ToList();
-                menu.Drinks = Db.Drinks.ToList();
+                menu.Items = Db.MenuItems.ToList();
+                //menu.Appetizers = Db.Appetizers.ToList();
+                //menu.Entrees = Db.Entrees.ToList();
+                //menu.Sides = Db.Sides.ToList();
+                //menu.Desserts = Db.Desserts.ToList();
+                //menu.Drinks = Db.Drinks.ToList();
             }
             return menu;
         }
 
-        public static List<IMenuItem> GetOrderedItems(MenuViewModel model)
+        public static List<MenuItem> GetOrderedItems(MenuViewModel menu)
         {
-            var menuItems = BuildMenu(model);
-            menuItems.RemoveAll(x=> NotOrdered(x));
-            return menuItems;
+            menu.Items.RemoveAll(x=> NotOrdered(x));
+            return menu.Items;
         }
 
-        private static List<IMenuItem> BuildMenu(MenuViewModel model)
-        {
-            var menuItemLists = new List<List<IMenuItem>>()
-            {
-                model.Appetizers.ToList<IMenuItem>(),
-                model.Desserts.ToList<IMenuItem>(),
-                model.Drinks.ToList<IMenuItem>(),
-                model.Entrees.ToList<IMenuItem>(),
-                model.Sides.ToList<IMenuItem>()
-            };
-            return menuItemLists.SelectMany(x => x).ToList();
-        }
-
-        private static bool NotOrdered(IMenuItem item)
+        private static bool NotOrdered(MenuItem item)
         {
             return item.Quantity < 1;
         }

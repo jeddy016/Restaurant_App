@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Restaurant.Interfaces;
 using Restaurant.Models;
 
 namespace Restaurant.Services
 {
     public class OrderService
     {
-        public static Order Build(List<IMenuItem> orderedMenuItems, User server, int discount)
+        public static Order Build(List<MenuItem> orderedMenuItems, User server, int discount)
         {
             var subTotal = CashRegister.CalculateSubTotal(orderedMenuItems);
             var discountAmount = CashRegister.CalculateDiscount(discount, subTotal);

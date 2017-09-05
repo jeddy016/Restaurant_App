@@ -8,7 +8,7 @@ namespace Restaurant.Services
 {
     public class CashRegister
     {
-        public static decimal CalculateSubTotal(List<IMenuItem> menu)
+        public static decimal CalculateSubTotal(List<MenuItem> menu)
         {
             ;
             var subTotal = 0.00M;
