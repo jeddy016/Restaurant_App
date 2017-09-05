@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
 using Restaurant.Models;
@@ -149,6 +146,43 @@ namespace Restaurant.Controllers
 
             ViewBag.message = "Error editing server. Try again.";
             return View("EditUserForm");
+        }
+
+        [Authorize]
+        public ActionResult ChangePassword()
+        {
+            if (Session["serverId"] != null)
+            {
+                var viewModel = new ChangePasswordViewModel()
+                {
+                    Id = int.Parse(Session["serverId"].ToString())
+                };
+
+                return View("ChangePassword", viewModel);
+            }
+
+            return RedirectToAction("Login");
+        }
+
+        [HttpPost]
+        public ActionResult SavePassword(ChangePasswordViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new User()
+                {
+                    Password = viewModel.Password,
+                    Id = viewModel.Id
+                };
+
+                UserService.UpdatePassword(user);
+
+                return RedirectToAction("NewOrder", "Order");
+            }
+
+            ViewBag.message = "Error updating Password. Try again.";
+
+            return View("ChangePassword");
         }
     }
 }

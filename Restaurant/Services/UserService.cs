@@ -78,5 +78,18 @@ namespace Restaurant.Services
                 return "1000";
             }
         }
+
+        public static void UpdatePassword(User user)
+        {
+            using (var _context = new AppDbContext())
+            {
+                
+                var userInDb = _context.Users.Find(user.Id);
+
+                userInDb.Password = user.Password;
+
+                _context.SaveChanges();
+            }
+        }
     }
 }
