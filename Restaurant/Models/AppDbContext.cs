@@ -10,5 +10,6 @@ namespace Restaurant.Models
         public DbSet<Tax> Taxes { get; set; }
         public DbSet<MenuItem> MenuItems { get; set; }
         public DbSet<MenuItemType> MenuItemTypes { get; set; }
+        public DbSet<OrderedMenuItem> OrderedMenuItems { get; set; }
     }
 }

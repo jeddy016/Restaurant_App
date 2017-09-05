@@ -155,7 +155,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\IMenuItem.cs" />
     <Compile Include="Migrations\201709012204224_initialMigration.cs" />
     <Compile Include="Migrations\201709012204224_initialMigration.Designer.cs">
       <DependentUpon>201709012204224_initialMigration.cs</DependentUpon>
@@ -244,9 +243,14 @@
     <Compile Include="Migrations\201709052133079_removeOrderedItems.Designer.cs">
       <DependentUpon>201709052133079_removeOrderedItems.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709052208567_createOrderedMenuItemsModel.cs" />
+    <Compile Include="Migrations\201709052208567_createOrderedMenuItemsModel.Designer.cs">
+      <DependentUpon>201709052208567_createOrderedMenuItemsModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Models\MenuItemType.cs" />
+    <Compile Include="Models\OrderedMenuItem.cs" />
     <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\EditUserFormViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
@@ -400,6 +404,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709052133079_removeOrderedItems.resx">
       <DependentUpon>201709052133079_removeOrderedItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709052208567_createOrderedMenuItemsModel.resx">
+      <DependentUpon>201709052208567_createOrderedMenuItemsModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

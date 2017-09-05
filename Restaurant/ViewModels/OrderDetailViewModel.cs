@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Restaurant.Interfaces;
 using Restaurant.Models;
 
 namespace Restaurant.ViewModels
