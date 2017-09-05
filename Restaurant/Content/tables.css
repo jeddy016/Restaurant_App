@@ -27,3 +27,7 @@ thead {
 a:hover {
     text-decoration: none !important;
 }
+
+.align-right {
+    text-align: right;
+}

@@ -11,14 +11,19 @@ namespace Restaurant.Controllers
     {
         public ActionResult NewOrder()
         {
-            var viewModel = MenuService.GetMenuItems();
-            viewModel.Discounts = CashRegister.GetDiscounts();
+            var menuItems = MenuService.GetMenuItems();
+
+            var viewModel = new NewOrderViewModel()
+            {
+                Items = menuItems,
+                Discounts = CashRegister.GetDiscounts()
+            };
 
             return View(viewModel);
         }
 
         [HttpPost]
-        public ActionResult BuildOrder(MenuViewModel model)
+        public ActionResult BuildOrder(NewOrderViewModel model)
         {
             User server;
 

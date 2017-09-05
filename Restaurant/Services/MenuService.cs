@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using Restaurant.Interfaces;
 using Restaurant.Models;
@@ -8,17 +9,15 @@ namespace Restaurant.Services
 {
     public class MenuService
     {
-        public static MenuViewModel GetMenuItems()
+        public static List<MenuItem> GetMenuItems()
         {
-            var menu = new MenuViewModel();
             using (AppDbContext Db = new AppDbContext())
             {
-                menu.Items = Db.MenuItems.ToList();
+                return Db.MenuItems.ToList();
             }
-            return menu;
         }
 
-        public static List<MenuItem> GetOrderedItems(MenuViewModel menu)
+        public static List<MenuItem> GetOrderedItems(NewOrderViewModel menu)
         {
             menu.Items.RemoveAll(x=> NotOrdered(x));
             return menu.Items;
@@ -27,6 +26,20 @@ namespace Restaurant.Services
         private static bool NotOrdered(MenuItem item)
         {
             return item.Quantity < 1;
+        }
+
+        public static void Delete(MenuItem item)
+        {
+            using (var Db = new AppDbContext())
+            {
+                Db.Entry(item).State = EntityState.Deleted;
+                Db.SaveChanges();
+            }
+        }
+
+        public static void Edit(MenuItem item)
+        {
+            
         }
     }
 }

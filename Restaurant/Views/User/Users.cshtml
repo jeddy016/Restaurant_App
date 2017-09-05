@@ -3,7 +3,7 @@
     ViewBag.Title = "Users";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@Styles.Render("~/Content/users.css")
+@Styles.Render("~/Content/tables.css")
 
 <div class="row">
     <div class="col-md-6">
@@ -33,10 +33,10 @@
                 <td>
                     @user.ServerNumber
                 </td>
-                <td>
+                <td class="align-right">
                     @Html.ActionLink("Edit", "EditUser", user, new {@class = "edit-link"})
                 </td>
-                <td>
+                <td class="align-right">
                     @Html.ActionLink("Delete", "DeleteUser", user, new{@class = "delete-link"})
                 </td>
             </tr>

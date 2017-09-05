@@ -1,0 +1,146 @@
+﻿@model Restaurant.ViewModels.MenuViewModel
+@using Restaurant.Enums
+@{
+    ViewBag.Title = "Menu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Content/tables.css")
+<div class="row">
+    <div class="col-md-6">
+        <h3>Menu</h3>
+    </div>
+    <div class="col-md-6">
+        @Html.ActionLink("Add Item", "Add", null, new { @class = "btn btn-success" })
+    </div>
+</div>
+<hr />
+
+<h5>Appetizers</h5>
+<table class="table-striped table-responsive">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @for (var i = 0; i < @Model.Items.Count; i++)
+    {
+        if (Model.Items[i].MenuItemTypeId == (int) MenuItem.APPETIZER)
+        {
+            <tr>
+                <td>@Model.Items[i].Name</td>
+                <td>@Model.Items[i].Price</td>
+                <td class="align-right">@Html.ActionLink("Edit", "Edit", @Model.Items[i], new { @class = "edit-link" })</td>
+                <td class="align-right">@Html.ActionLink("Delete", "Delete", @Model.Items[i], new { @class = "delete-link" })</td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>
+<hr />
+<h5>Entrees</h5>
+<table class="table-striped table-responsive">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @for (var i = 0; i < @Model.Items.Count; i++)
+    {
+        if (Model.Items[i].MenuItemTypeId == (int) MenuItem.ENTREE)
+        {
+            <tr>
+                <td>@Model.Items[i].Name</td>
+                <td>@Model.Items[i].Price</td>
+                <td class="align-right">@Html.ActionLink("Edit", "Edit", @Model.Items[i], new { @class = "edit-link" })</td>
+                <td class="align-right">@Html.ActionLink("Delete", "Delete", @Model.Items[i], new { @class = "delete-link" })</td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>
+<hr />
+<h5>Sides</h5>
+<table class="table-striped table-responsive">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @for (var i = 0; i < @Model.Items.Count; i++)
+    {
+        if (Model.Items[i].MenuItemTypeId == (int) MenuItem.SIDE)
+        {
+            <tr>
+                <td>@Model.Items[i].Name</td>
+                <td>@Model.Items[i].Price</td>
+                <td class="align-right">@Html.ActionLink("Edit", "Edit", @Model.Items[i], new { @class = "edit-link" })</td>
+                <td class="align-right">@Html.ActionLink("Delete", "Delete", @Model.Items[i], new { @class = "delete-link" })</td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>
+<hr />
+<h5>Desserts</h5>
+<table class="table-striped table-responsive">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @for (var i = 0; i < @Model.Items.Count; i++)
+    {
+        if (Model.Items[i].MenuItemTypeId == (int)MenuItem.DESSERT)
+        {
+            <tr>
+                <td>@Model.Items[i].Name</td>
+                <td>@Model.Items[i].Price</td>
+                <td class="align-right">@Html.ActionLink("Edit", "Edit", @Model.Items[i], new { @class = "edit-link" })</td>
+                <td class="align-right">@Html.ActionLink("Delete", "Delete", @Model.Items[i], new { @class = "delete-link" })</td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>
+<hr/>
+<h5>Drinks</h5>
+<table class="table-striped table-responsive">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @for (var i = 0; i < @Model.Items.Count; i++)
+    {
+        if (Model.Items[i].MenuItemTypeId == (int) MenuItem.DRINK)
+        {
+            <tr>
+                <td>@Model.Items[i].Name</td>
+                <td>@Model.Items[i].Price</td>
+                <td class="align-right">@Html.ActionLink("Edit", "Edit", @Model.Items[i], new { @class = "edit-link" })</td>
+                <td class="align-right">@Html.ActionLink("Delete", "Delete", @Model.Items[i], new { @class = "delete-link" })</td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>
