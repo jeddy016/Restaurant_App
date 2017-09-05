@@ -14,11 +14,6 @@ namespace Restaurant.Services
             using (AppDbContext Db = new AppDbContext())
             {
                 menu.Items = Db.MenuItems.ToList();
-                //menu.Appetizers = Db.Appetizers.ToList();
-                //menu.Entrees = Db.Entrees.ToList();
-                //menu.Sides = Db.Sides.ToList();
-                //menu.Desserts = Db.Desserts.ToList();
-                //menu.Drinks = Db.Drinks.ToList();
             }
             return menu;
         }

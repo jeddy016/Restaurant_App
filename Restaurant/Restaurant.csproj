@@ -235,6 +235,10 @@
     <Compile Include="Migrations\201709051329127_fixMenuItemTypeName.Designer.cs">
       <DependentUpon>201709051329127_fixMenuItemTypeName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709051412233_condenseMenuItems.cs" />
+    <Compile Include="Migrations\201709051412233_condenseMenuItems.Designer.cs">
+      <DependentUpon>201709051412233_condenseMenuItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Models\MenuItemType.cs" />
@@ -242,13 +246,8 @@
     <Compile Include="ViewModels\EditUserFormViewModel.cs" />
     <Compile Include="ViewModels\NewUserFormViewModel.cs" />
     <Compile Include="Models\AppDbContext.cs" />
-    <Compile Include="Models\Appetizer.cs" />
-    <Compile Include="Models\Dessert.cs" />
     <Compile Include="Models\Discount.cs" />
-    <Compile Include="Models\Drink.cs" />
-    <Compile Include="Models\Entree.cs" />
     <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\Side.cs" />
     <Compile Include="Models\Tax.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -383,6 +382,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709051329127_fixMenuItemTypeName.resx">
       <DependentUpon>201709051329127_fixMenuItemTypeName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709051412233_condenseMenuItems.resx">
+      <DependentUpon>201709051412233_condenseMenuItems.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

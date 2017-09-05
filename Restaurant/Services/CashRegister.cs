@@ -10,7 +10,6 @@ namespace Restaurant.Services
     {
         public static decimal CalculateSubTotal(List<MenuItem> menu)
         {
-            ;
             var subTotal = 0.00M;
 
             foreach (var menuItem in menu)
