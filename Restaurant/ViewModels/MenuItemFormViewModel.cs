@@ -13,7 +13,7 @@ namespace Restaurant.ViewModels
 
         [Required(ErrorMessage = "Name is required")]
         [StringLength(25, ErrorMessage = "Item name must be between 1 & 25 characters", MinimumLength = 1)]
-        [RegularExpression("^[a-zA-Z][a-zA-Z0-9]*$", ErrorMessage = "Item name can only contain letters and numbers")]
+        [RegularExpression("^[0-9A-Za-z ]+$", ErrorMessage = "Item name can only contain letters and numbers")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Price is required")]

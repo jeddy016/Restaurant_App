@@ -240,6 +240,10 @@
     <Compile Include="Migrations\201709051412233_condenseMenuItems.Designer.cs">
       <DependentUpon>201709051412233_condenseMenuItems.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709052133079_removeOrderedItems.cs" />
+    <Compile Include="Migrations\201709052133079_removeOrderedItems.Designer.cs">
+      <DependentUpon>201709052133079_removeOrderedItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Models\MenuItemType.cs" />
@@ -393,6 +397,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709051412233_condenseMenuItems.resx">
       <DependentUpon>201709051412233_condenseMenuItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709052133079_removeOrderedItems.resx">
+      <DependentUpon>201709052133079_removeOrderedItems.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
