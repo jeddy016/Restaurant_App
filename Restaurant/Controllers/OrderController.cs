@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using Restaurant.Models;
 using Restaurant.Services;
@@ -15,7 +16,7 @@ namespace Restaurant.Controllers
 
             var viewModel = new NewOrderViewModel()
             {
-                Items = menuItems,
+                MenuItems = menuItems,
                 Discounts = CashRegister.GetDiscounts()
             };
 
@@ -41,14 +42,16 @@ namespace Restaurant.Controllers
             if (orderedMenuItems.Count > 0)
             {
                 Order order = OrderService.Build(orderedMenuItems, server, model.SelectedDiscount);
-                
+
                 OrderDetailViewModel viewModel = new OrderDetailViewModel()
                 {
                     Order = order,
-                    OrderedItems = orderedMenuItems
+                    MenuItems = orderedMenuItems
                 };
-                
-                return View("OrderDetail", viewModel);
+
+                Session["orderId"] = order.Id;
+                ModelState.Clear();
+                return View("OrderSummary", viewModel);
             }
 
             TempData["message"] = "Orders must contain at least 1 item";
@@ -56,9 +59,13 @@ namespace Restaurant.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveOrder(Order order)
+        public ActionResult SaveOrder(List<MenuItem> MenuItems)
         {
-            OrderService.Save(order);
+            var orderId = int.Parse(Session["orderId"].ToString());
+
+            OrderService.SaveOrderedItems(orderId, MenuItems);
+
+            Session.Remove("orderId");
 
             return RedirectToAction("OrderHistory");
         }
@@ -69,6 +76,17 @@ namespace Restaurant.Controllers
             {
                 Orders = OrderService.GetOrderHistory()
             };
+            return View(viewModel);
+        }
+
+        public ActionResult OrderDetail(int id)
+        {
+            var viewModel = new OrderDetailViewModel()
+            {
+                Order = OrderService.GetOrderById(id),
+                MenuItems = OrderService.GetOrderedItemsById(id)
+            };
+
             return View(viewModel);
         }
     }

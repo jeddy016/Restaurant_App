@@ -251,6 +251,7 @@
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Models\MenuItemType.cs" />
     <Compile Include="Models\OrderedMenuItem.cs" />
+    <Compile Include="Models\SaveOrderViewModel.cs" />
     <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\EditUserFormViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
@@ -321,6 +322,7 @@
     <Content Include="Views\Menu\Add.cshtml" />
     <Content Include="Views\Menu\Edit.cshtml" />
     <Content Include="Views\Menu\Delete.cshtml" />
+    <Content Include="Views\Order\OrderSummary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

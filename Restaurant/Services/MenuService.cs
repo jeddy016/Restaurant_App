@@ -26,8 +26,8 @@ namespace Restaurant.Services
         
         public static List<MenuItem> GetOrderedItems(NewOrderViewModel menu)
         {
-            menu.Items.RemoveAll(x=> NotOrdered(x));
-            return menu.Items;
+            menu.MenuItems.RemoveAll(x=> NotOrdered(x));
+            return menu.MenuItems;
         }
 
         private static bool NotOrdered(MenuItem item)

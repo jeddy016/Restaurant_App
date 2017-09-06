@@ -22,17 +22,21 @@
         <div class="col-md-12">
             <h5 class="app-label">Appetizers</h5>
         </div>
-        @for (var i = 0; i < Model.Items.Count; i++)
+        @for (var i = 0; i < Model.MenuItems.Count; i++)
         {
-            if (Model.Items[i].MenuItemTypeId == (int) MenuItem.APPETIZER)
+            if (Model.MenuItems[i].MenuItemTypeId == (int) MenuItem.APPETIZER)
              {
                  <div class="col-md-2 text-center app-item">
-                     <p class="item-name">@Model.Items[i].Name</p>
-                     <p>$@Model.Items[i].Price</p>
-                     @Html.HiddenFor(m => m.Items[i].Price)
-                     @Html.HiddenFor(m => m.Items[i].Name)
-                     @Html.LabelFor(m => m.Items[i].Quantity)
-                     @Html.TextBoxFor(m => m.Items[i].Quantity, new {type = "number", min = "0", @class = "quantity-input form-control"})
+                     <p class="item-name">@Model.MenuItems[i].Name</p>
+                     <p>$@Model.MenuItems[i].Price</p>
+                     @Html.HiddenFor(m => m.MenuItems[i].Id)
+                     @Html.HiddenFor(m => m.MenuItems[i].Price)
+                     @Html.HiddenFor(m => m.MenuItems[i].Name)
+                     @Html.HiddenFor(m => m.MenuItems[i].MenuItemTypeId)
+                     @Html.HiddenFor(m => m.MenuItems[i].MenuItemType)
+
+                     @Html.LabelFor(m => m.MenuItems[i].Quantity)
+                     @Html.TextBoxFor(m => m.MenuItems[i].Quantity, new {type = "number", min = "0", @class = "quantity-input form-control"})
                  </div>
              }
         }
@@ -42,17 +46,21 @@
             <hr />
             <h5 class="entree-label">Entrees</h5>
         </div>  
-        @for (var i = 0; i < Model.Items.Count; i++)
+        @for (var i = 0; i < Model.MenuItems.Count; i++)
         {
-            if (Model.Items[i].MenuItemTypeId == (int) MenuItem.ENTREE)
+            if (Model.MenuItems[i].MenuItemTypeId == (int) MenuItem.ENTREE)
             {
                 <div class="col-md-2 text-center entree-item">
-                    <p class="item-name">@Model.Items[i].Name</p>
-                    <p>$@Model.Items[i].Price</p>
-                    @Html.HiddenFor(m => m.Items[i].Price)
-                    @Html.HiddenFor(m => m.Items[i].Name)
-                    @Html.LabelFor(m => m.Items[i].Quantity)
-                    @Html.TextBoxFor(m => m.Items[i].Quantity, new {type = "number", min = "0", @class = "quantity-input form-control"})
+                    <p class="item-name">@Model.MenuItems[i].Name</p>
+                    <p>$@Model.MenuItems[i].Price</p>
+                    @Html.HiddenFor(m => m.MenuItems[i].Id)
+                    @Html.HiddenFor(m => m.MenuItems[i].Price)
+                    @Html.HiddenFor(m => m.MenuItems[i].Name)
+                    @Html.HiddenFor(m => m.MenuItems[i].MenuItemTypeId)
+                    @Html.HiddenFor(m => m.MenuItems[i].MenuItemType)
+
+                    @Html.LabelFor(m => m.MenuItems[i].Quantity)
+                    @Html.TextBoxFor(m => m.MenuItems[i].Quantity, new {type = "number", min = "0", @class = "quantity-input form-control"})
                 </div>
             }
         }         
@@ -62,17 +70,21 @@
             <hr />
             <h5 class="side-label">Sides</h5>
         </div>
-        @for (var i = 0; i < Model.Items.Count; i++)
+        @for (var i = 0; i < Model.MenuItems.Count; i++)
         {
-            if (Model.Items[i].MenuItemTypeId == (int) MenuItem.SIDE)
+            if (Model.MenuItems[i].MenuItemTypeId == (int) MenuItem.SIDE)
             {
                 <div class="col-md-2 text-center side-item">
-                    <p class="item-name">@Model.Items[i].Name</p>
-                    <p>$@Model.Items[i].Price</p>
-                    @Html.HiddenFor(m => m.Items[i].Price)
-                    @Html.HiddenFor(m => m.Items[i].Name)
-                    @Html.LabelFor(m => m.Items[i].Quantity)
-                    @Html.TextBoxFor(m => m.Items[i].Quantity, new {type = "number", min = "0", @class = "quantity-input form-control"})
+                    <p class="item-name">@Model.MenuItems[i].Name</p>
+                    <p>$@Model.MenuItems[i].Price</p>
+                    @Html.HiddenFor(m => m.MenuItems[i].Id)
+                    @Html.HiddenFor(m => m.MenuItems[i].Price)
+                    @Html.HiddenFor(m => m.MenuItems[i].Name)
+                    @Html.HiddenFor(m => m.MenuItems[i].MenuItemType)
+                    @Html.HiddenFor(m => m.MenuItems[i].MenuItemTypeId)
+
+                    @Html.LabelFor(m => m.MenuItems[i].Quantity)
+                    @Html.TextBoxFor(m => m.MenuItems[i].Quantity, new {type = "number", min = "0", @class = "quantity-input form-control"})
                 </div>
             }
         }
@@ -82,17 +94,21 @@
             <hr />
             <h5 class="dessert-label">Desserts</h5>
         </div>
-        @for (var i = 0; i < Model.Items.Count; i++)
+        @for (var i = 0; i < Model.MenuItems.Count; i++)
         {
-            if (Model.Items[i].MenuItemTypeId == (int) MenuItem.DESSERT)
+            if (Model.MenuItems[i].MenuItemTypeId == (int) MenuItem.DESSERT)
             {
                 <div class="col-md-2 text-center dessert-item">
-                    <p class="item-name">@Model.Items[i].Name</p>
-                    <p>$@Model.Items[i].Price</p>
-                    @Html.HiddenFor(m => m.Items[i].Price)
-                    @Html.HiddenFor(m => m.Items[i].Name)
-                    @Html.LabelFor(m => m.Items[i].Quantity)
-                    @Html.TextBoxFor(m => m.Items[i].Quantity, new {type = "number", min = "0", @class = "quantity-input form-control"})
+                    <p class="item-name">@Model.MenuItems[i].Name</p>
+                    <p>$@Model.MenuItems[i].Price</p>
+                    @Html.HiddenFor(m => m.MenuItems[i].Id)
+                    @Html.HiddenFor(m => m.MenuItems[i].Price)
+                    @Html.HiddenFor(m => m.MenuItems[i].Name)
+                    @Html.HiddenFor(m => m.MenuItems[i].MenuItemType)
+                    @Html.HiddenFor(m => m.MenuItems[i].MenuItemTypeId)
+
+                    @Html.LabelFor(m => m.MenuItems[i].Quantity)
+                    @Html.TextBoxFor(m => m.MenuItems[i].Quantity, new {type = "number", min = "0", @class = "quantity-input form-control"})
                 </div>
             }
         }
@@ -102,17 +118,21 @@
             <hr />
             <h5 class="drink-label">Drinks</h5>
         </div>
-        @for (var i = 0; i < Model.Items.Count; i++)
+        @for (var i = 0; i < Model.MenuItems.Count; i++)
         {
-            if (Model.Items[i].MenuItemTypeId == (int) MenuItem.DRINK)
+            if (Model.MenuItems[i].MenuItemTypeId == (int) MenuItem.DRINK)
             {
                 <div class="col-md-2 text-center drink-item">
-                    <p class="item-name">@Model.Items[i].Name</p>
-                    <p>$@Model.Items[i].Price</p>
-                    @Html.HiddenFor(m => m.Items[i].Price)
-                    @Html.HiddenFor(m => m.Items[i].Name)
-                    @Html.LabelFor(m => m.Items[i].Quantity)
-                    @Html.TextBoxFor(m => m.Items[i].Quantity, new {type = "number", min = "0", @class = "quantity-input form-control"})
+                    <p class="item-name">@Model.MenuItems[i].Name</p>
+                    <p>$@Model.MenuItems[i].Price</p>
+                    @Html.HiddenFor(m => m.MenuItems[i].Id)
+                    @Html.HiddenFor(m => m.MenuItems[i].Price)
+                    @Html.HiddenFor(m => m.MenuItems[i].Name)
+                    @Html.HiddenFor(m => m.MenuItems[i].MenuItemTypeId)
+                    @Html.HiddenFor(m => m.MenuItems[i].MenuItemType)
+
+                    @Html.LabelFor(m => m.MenuItems[i].Quantity)
+                    @Html.TextBoxFor(m => m.MenuItems[i].Quantity, new {type = "number", min = "0", @class = "quantity-input form-control"})
                 </div>
             }
         }

@@ -1,21 +1,20 @@
 ﻿@using System.Globalization
 @model Restaurant.ViewModels.OrderDetailViewModel
 @{
-    ViewBag.Title = "Order Detail";
+    ViewBag.Title = "Order Summary";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @Styles.Render("~/Content/order-detail.css")
 
 <div class="row text-center">
-    <h2>Order Detail</h2>
+    <h2>Order Summary</h2>
 </div>
 <div class="row">
     <div class="col-md-3">
-        <p>Server: @Model.Order.Server.FullName</p>
         <p>@($"{Model.Order.DateTime.ToString(CultureInfo.InvariantCulture):g}")</p>
     </div>
 </div>
-<hr/>
+<hr />
 
 @using (Html.BeginForm("SaveOrder", "Order", FormMethod.Post))
 {
@@ -52,8 +51,12 @@
             </div>
         }
     </div>
-    <hr/>
+    <hr />
     <div class="row text-right">
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-block btn-primary">Submit Order</button>
+            <a href="~/Home/Index" class="btn btn-block btn-danger">Cancel Order</a>
+        </div>
         <p>SubTotal: $@Model.Order.SubTotal</p>
         <p>Discount: $@Model.Order.Discount</p>
         <p>Pre-Tax Total: $@Model.Order.PreTaxTotal</p>
@@ -63,5 +66,5 @@
 }
 
 
-        
+
 

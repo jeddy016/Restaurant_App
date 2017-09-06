@@ -6,7 +6,7 @@ namespace Restaurant.ViewModels
 {
     public class NewOrderViewModel
     {
-        public List<MenuItem> Items { get; set; }
+        public List<MenuItem> MenuItems { get; set; }
         public List<Discount> Discounts { get; set; }
 
         [Display(Name = "Discount: ")]

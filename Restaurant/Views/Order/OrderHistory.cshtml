@@ -10,9 +10,12 @@
     <h3>Order History</h3>
     <hr/>
 </div>
-<div class="table-responsive">
-    <table class="table-hover table-striped">
-        <thead>
+
+@using (Html.BeginForm("OrderDetail", "Order", FormMethod.Get))
+{
+    <div class="table-responsive">
+        <table class="table-hover table-striped">
+            <thead>
             <tr>
                 <th>Date/Time</th>
                 <th>Server</th>
@@ -21,23 +24,25 @@
                 <th>Pre-Tax</th>
                 <th>Tax</th>
                 <th>Total</th>
+                <th></th>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var order in Model.Orders)
+            </thead>
+            <tbody>
+            @for(var i = 0; i < Model.Orders.Count; i++)
             {
                 <tr>
-                    <td>@($"{order.DateTime.ToString(CultureInfo.InvariantCulture):g}")</td>
-                    <td>@order.Server.FullName</td>
-                    <td>$@order.SubTotal</td>
-                    <td>$@order.Discount</td>
-                    <td>$@order.PreTaxTotal</td>
-                    <td>$@order.Tax</td>
-                    <td>$@order.Total</td>
+                    <td>@($"{Model.Orders[i].DateTime.ToString(CultureInfo.InvariantCulture):g}")</td>
+                    <td>@Model.Orders[i].Server.FullName</td>
+                    <td>$@Model.Orders[i].SubTotal</td>
+                    <td>$@Model.Orders[i].Discount</td>
+                    <td>$@Model.Orders[i].PreTaxTotal</td>
+                    <td>$@Model.Orders[i].Tax</td>
+                    <td>$@Model.Orders[i].Total</td>
+                    <td>@Html.ActionLink("View", "OrderDetail", new{Model.Orders[i].Id})</td>
                 </tr>
             }
-        </tbody>
-    </table>
-</div>
-
+            </tbody>
+        </table>
+    </div>
+}
 
