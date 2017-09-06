@@ -2,10 +2,6 @@
     color: #2A9FD6;
 }
 
-.btn-primary {
-    float: right;
-}
-
 .text-primary:hover {
     color: white !important;
     text-decoration: none !important;

@@ -5,6 +5,12 @@
 }
 @Styles.Render("~/Content/login.css")
 
+<div class="row text-center">
+    @if (ViewBag.DbMessage != null)
+    {
+        <span class="text-success">@ViewBag.DbMessage</span>
+    }
+</div>
 <div class="center">
     <h2>Server Login</h2>
     <hr/>

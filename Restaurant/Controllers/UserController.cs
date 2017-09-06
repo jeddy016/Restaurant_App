@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Data.Entity.Core.Common;
+using System.Web.Mvc;
 using System.Web.Security;
 using Restaurant.Models;
 using Restaurant.Services;
@@ -8,6 +9,19 @@ namespace Restaurant.Controllers
 {
     public class UserController : Controller
     {
+        public ActionResult SeedDb()
+        {
+            if (DbService.Empty())
+            {
+                DbService.SeedDb();
+                ViewBag.DbMessage = "Database Seeded! Test Server Number is 1234 and the Password is \"guest\"";
+                return View("Login");
+            }
+            ViewBag.DbMessage = "Database already seeded!";
+
+            return View("Login");
+        }
+
         public ActionResult Login()
         {
             return View();

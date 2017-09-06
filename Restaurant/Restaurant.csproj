@@ -251,7 +251,8 @@
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Models\MenuItemType.cs" />
     <Compile Include="Models\OrderedMenuItem.cs" />
-    <Compile Include="Models\SaveOrderViewModel.cs" />
+    <Compile Include="ViewModels\SaveOrderViewModel.cs" />
+    <Compile Include="Services\DbService.cs" />
     <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\EditUserFormViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
